@@ -5,11 +5,11 @@ const City = () => {
             <div className="card col-4">
                 <form>
                 <div className="form-group">
-                    <div className="form-group col-md-5">
+                    <div className="form-group col-md-10">
                     <label for="inputCity">City</label>
                     <input type="text" className="form-control" id="inputCity"/>
                     </div>
-                    <div className="form-group col-md-5">
+                    <div className="form-group col-md-10">
                     <label for="inputState">State</label>
                     <input type="text" className="form-control" id="inputState" required />
                     </div>
