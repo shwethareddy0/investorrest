@@ -10,7 +10,6 @@ import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
 
-
 function App() {
   return (
     <Router>
