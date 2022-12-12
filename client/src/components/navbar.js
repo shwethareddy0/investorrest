@@ -15,29 +15,29 @@ function AppNavbar() {
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
               <Nav.Link as={Link} to="/compare">
-                <h3>Compare Property</h3>
+                <h4>Compare Property</h4>
               </Nav.Link>
               <Nav.Link as={Link} to="/search">
-                <h3>Search A City</h3>
+                <h4>Search City</h4>
               </Nav.Link>
               <Nav.Link as={Link} to="/myhomes">
-                <h3>My Homes</h3>
+                <h4>My Homes</h4>
               </Nav.Link>
               {/* if user is logged in show saved homes and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to="/saved">
-                    <h3>My Homes</h3>
+                    <h4>My Homes</h4>
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
                   <Nav.Link as={Link} to="/login">
-                    <h3>Login</h3>
+                    <h4>Login</h4>
                   </Nav.Link>
                   <Nav.Link as={Link} to="/signup">
-                    <h3>Signup</h3>
+                    <h4>Signup</h4>
                   </Nav.Link>
                 </>
               )}
