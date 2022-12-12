@@ -6,10 +6,10 @@ import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
 function CompareProperty() {
   const [ready, setReady] = useState(false);
   return (
-    <Container fluid>
+    <Container fluid className="col-11">
       <Row>
-        <Col className="col-5">
-        <Card border="dark" className="col-5">
+        <Col>
+        <Card border="dark" className="col-11">
         <Card.Header>Search an Area</Card.Header>
         <Form className="col-11">
         <Form.Group className="mb-3" controlId="inputCity">
@@ -27,20 +27,20 @@ function CompareProperty() {
         </Form.Group>
         </Row>
         <Row>
-        <Form.Group className="col-8" controlId="inputState">
+        <Form.Group className="col-7" controlId="inputState">
           <Form.Label>Property Price</Form.Label>
           <Form.Control type="Number" placeholder="Required" id="propertyPrice" required/>
         </Form.Group>
-        <Form.Group className="col-4" controlId="inputState">
+        <Form.Group className="col-5" controlId="inputState">
           <Form.Label>Interest Rate</Form.Label>
           <Form.Control type="Number" format={"### %"} placeholder="Required" id="interest Rate" required/>
         </Form.Group>
         </Row>
         <Form.Group className="col-9" controlId="downPayment">
           <Form.Label>Down Payment</Form.Label>
-          <Form.Control type="Number" placeholder="If none enter 0" id="downPayment" required/>
+          <Form.Control  type="Number" placeholder="If none enter 0" id="downPayment" required/>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button  variant="primary" type="submit">
           Submit
         </Button>
         </Form>
@@ -48,7 +48,7 @@ function CompareProperty() {
       </Col>
       
       <Col>
-      <Card border="dark">
+      <Card border="dark" style={{ width: "46rem" }}>
         <Card.Header>Comparison Chart</Card.Header>
         <Row>
         <Col>
