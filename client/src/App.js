@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
@@ -8,6 +9,7 @@ import SearchCity from "./pages/SearchCity";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
+
 
 function App() {
   return (
