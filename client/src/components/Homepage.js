@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 function Homepage() {
   return (
     <div>
-      <h1>Homepage</h1>
+      <h1>Card</h1>
     </div>
   );
 }
