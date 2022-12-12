@@ -1,3 +1,4 @@
+// import { faUnderline } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 //  import Button from 'react-bootstrap/Button';
 //  import Form from 'react-bootstrap/Form';
@@ -9,7 +10,7 @@ function SearchCity() {
         <Row>
           <Col sm={4}>
             <Card border="dark" style={{ width: "18rem" }}>
-              <Card.Header>Search an Area</Card.Header>
+              <Card.Header>Check a Property</Card.Header>
             <Form className="col-10">
             <Form.Group className="mb-3" controlId="inputCity">
               <Form.Label>City</Form.Label>
