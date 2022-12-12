@@ -9,35 +9,35 @@ function AppNavbar() {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
-            InvestorRest
+            <h1>InvestorRest</h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
               <Nav.Link as={Link} to="/compare">
-                Compare Property
+                <h3>Compare Property</h3>
               </Nav.Link>
               <Nav.Link as={Link} to="/search">
-                Search A City
+                <h3>Search A City</h3>
               </Nav.Link>
               <Nav.Link as={Link} to="/myhomes">
-                My Homes
+                <h3>My Homes</h3>
               </Nav.Link>
               {/* if user is logged in show saved homes and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to="/saved">
-                    My Homes
+                    <h3>My Homes</h3>
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
                   <Nav.Link as={Link} to="/login">
-                    Login
+                    <h3>Login</h3>
                   </Nav.Link>
                   <Nav.Link as={Link} to="/signup">
-                    Sign Up
+                    <h3>Signup</h3>
                   </Nav.Link>
                 </>
               )}

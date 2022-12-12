@@ -1,10 +1,13 @@
 import React from "react";
+import { Jumbotron } from "react-bootstrap";
 import AppNavbar from "./Navbar";
 
 function Header() {
   return (
     <div>
-      <AppNavbar />
+      <Jumbotron fluid className="text-light bg-dark">
+        <AppNavbar />
+      </Jumbotron>
     </div>
   );
 }
