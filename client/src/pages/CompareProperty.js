@@ -8,7 +8,7 @@ function CompareProperty() {
   return (
     <Container fluid>
       <Row>
-        <Col>
+        <Col className="col-5">
         <Card border="dark" className="col-5">
         <Card.Header>Search an Area</Card.Header>
         <Form className="col-11">
