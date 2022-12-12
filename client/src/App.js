@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import City from './components/city';
+import Compare from './components/compare';
 
 function App() {
   return (
