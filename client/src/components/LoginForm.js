@@ -4,7 +4,7 @@ import { loginUser } from "../utils/API";
 import Auth from "../utils/auth";
 
 const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -39,9 +39,9 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: "",
-      email: "",
-      password: "",
+      username: '',
+      email: '',
+      password: '',
     });
   };
 
