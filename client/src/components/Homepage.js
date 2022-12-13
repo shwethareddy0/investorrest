@@ -21,7 +21,7 @@ function Homepage() {
               <ListGroup.Item>Portland</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="/search">Search City</Card.Link>
+              <Card.Link href="/search">Search</Card.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -40,7 +40,7 @@ function Homepage() {
               <ListGroup.Item>North Carolina</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="/search">Search City</Card.Link>
+              <Card.Link href="/search">Search</Card.Link>
             </Card.Body>
           </Card>
         </Col>
