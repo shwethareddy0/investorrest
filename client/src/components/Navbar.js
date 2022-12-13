@@ -21,13 +21,13 @@ function AppNavbar() {
               <Nav.Link activeclassname="active" as={Link} to="/search">
                 <h4>Search City</h4>
               </Nav.Link>
-              <Nav.Link activeclassname="active" as={Link} to="/myhomes">
+              {/* <Nav.Link activeclassname="active" as={Link} to="/myhomes">
                 <h4>My Homes</h4>
-              </Nav.Link>
+              </Nav.Link> */}
               {/* if user is logged in show saved homes and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link activeclassname="active" as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/saved">
                     <h4>My Homes</h4>
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
