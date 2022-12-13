@@ -79,27 +79,30 @@ function SearchCity() {
         {cityResults && (
           <Col>
             <Card border="dark" style={{ width: "50rem" }}>
+              console.log({cityResults.airbnb_rental}); let nightlyRate=
+              {cityResults.airbnb_rental}; let avgNightlyRate=nightlyRate / 30;
+              console.log(nightlyRate/30.41); console.log(avgNightlyRate);
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">Area Stats</h3>
-                  <h4 className="areaStat">
-                    {" "}
-                    Average Occupency Rate:{cityResults.occupancy}
-                  </h4>
-                  <h5 className="abbStat">"Occupency Rate"</h5>
+                  <h4 className="areaStat"> Average Occupency Rate:</h4>
+                  <h5 className="abbStat">{cityResults.occupancy}%</h5>
                   <h4 className="areaStat"> Number of Airbnbs:</h4>
-                  <h5 className="abbStat">"# of Airbnbs"</h5>
+                  <h5 className="abbStat">{cityResults.airbnb_properties}</h5>
                   <h4 className="areaStat"> Average Nighlty Rate:</h4>
-                  <h5 className="abbStat">"Nightly Rate"</h5>
+                  <h5 className="abbStat">$nightlyRate</h5>
                   <h4 className="areaStat"> Average Monthly Earning:</h4>
-                  <h5 className="abbStat">"Monthly Earnings"</h5>
+                  <h5 className="abbStat">${cityResults.airbnb_rental}</h5>
                   <h4 className="areaStat"> Average Property Price:</h4>
-                  <h5 className="abbStat">"Avg Property Price"</h5>
+                  <h5 className="abbStat">${cityResults.median_price}</h5>
                   <a href="#" className="btn btn-outline-secondary btn-sm">
                     <i className="far fa-heart"></i>
                   </a>
                 </div>
               </div>
+              <Card.Body>
+                <Card.Link href="/myhomes">My Homes</Card.Link>
+              </Card.Body>
             </Card>
           </Col>
         )}
