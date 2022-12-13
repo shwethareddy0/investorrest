@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, STATES } = require('mongoose');
 
 const propertySchema = new Schema({
 //avg-price
@@ -6,6 +6,12 @@ const propertySchema = new Schema({
 //avg-occupancy
 //airbnb rental rates per month
 
+avg-propertyprice
+   no-of-airbnbs
+  avg-occupency
+  airbnb-rental-rates-permonth
+STATE
+ciy
 });
 
 module.exports = propertySchema;
