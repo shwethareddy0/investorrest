@@ -40,6 +40,22 @@ function SearchCity() {
     >
       <Row>
         <Col>
+
+            <Card border="dark" style={{ width: "40rem" }} >
+              <div className="card">
+                <div className="card-body">
+                  <h3 className="card-title"> city Stats</h3>
+                    <h4 className="areaStat"> Average Occupency Rate:</h4>
+                    <h5 className="abbStat">"Occupency Rate"</h5> 
+                    <h4 className="areaStat"> Number of Airbnbs:</h4>
+                    <h5 className="abbStat">"# of Airbnbs"</h5> 
+                    <h4 className="areaStat"> Average Nighlty Rate:</h4>
+                    <h5 className="abbStat">"Nightly Rate"</h5>
+                    <h4 className="areaStat"> Average Monthly Earning:</h4>
+                    <h5 className="abbStat">"Monthly Earnings"</h5>
+                    <h4 className="areaStat"> Average Property Price:</h4>
+                    <h5 className="abbStat">"Avg Property Price"</h5> 
+
           <Card border="dark" style={{ width: "18rem" }}>
             <Card.Header>Check a Property</Card.Header>
             <Form
@@ -104,6 +120,7 @@ function SearchCity() {
                   >
                     <FontAwesomeIcon className="icon" icon={faHeart} />
                   </Button>
+
                 </div>
               </div>
               <Card.Body>

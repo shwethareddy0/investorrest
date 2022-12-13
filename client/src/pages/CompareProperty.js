@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import '../App.scss';
 // import TraditionalComparableListing from "../components/TranditionalComparableListing";
 import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 // 397651 - property id as an example
 function CompareProperty() {
@@ -57,24 +59,27 @@ function CompareProperty() {
         <Card.Header className ="comparison">Comparison Chart</Card.Header>
         <Row>
         <Col style={{ margin: '5px'}}>
-        <h3 classNameName="card-title">Area Stats</h3>
-          <h4 classNameName="areaStat"> Average Occupency Rate:</h4>
-            <h5 classNameName="abbStat">Occupency Rate</h5> 
-          <h4 classNameName="areaStat"> Average Nightly Rate:</h4>
-            <h5 classNameName="abbStat">Nightly Rate</h5> 
-          <h4 classNameName="areaStat"> Average Monthly Earnings:</h4>
-            <h5 classNameName="abbStat">Monthly Earnings</h5>
+        <h3 className="card-title">Area Stats</h3>
+          <h4 className="areaStat"> Average Occupency Rate:</h4>
+            <h5 className="abbStat">Occupency Rate</h5> 
+          <h4 className="areaStat"> Average Nightly Rate:</h4>
+            <h5 className="abbStat">Nightly Rate</h5> 
+          <h4 className="areaStat"> Average Monthly Earnings:</h4>
+            <h5 className="abbStat">Monthly Earnings</h5>
         </Col>
         <Col>
-        <h3 classNameName="card-title">Property Stats</h3>
-          <h4 classNameName="areaStat">Break Even Occupency Rate:</h4>
-            <h5 classNameName="abbStat">Occupency Rate</h5> 
-          <h4 classNameName="areaStat"> Break Even Nightly Rate:</h4>
-            <h5 classNameName="abbStat">Nightly Rate</h5> 
-          <h4 classNameName="areaStat"> Potential Monthly Earnings:</h4>
-            <h5 classNameName="abbStat">Monthly Earnings</h5>
-            <h4 classNameName="areaStat"> ROI:</h4>
-            <h5 classNameName="abbStat">ROI%</h5>
+        <h3 className="card-title">Property Stats</h3>
+          <h4 className="areaStat">Break Even Occupency Rate:</h4>
+            <h5 className="abbStat">Occupency Rate</h5> 
+          <h4 className="areaStat"> Break Even Nightly Rate:</h4>
+            <h5 className="abbStat">Nightly Rate</h5> 
+          <h4 className="areaStat"> Potential Monthly Earnings:</h4>
+            <h5 className="abbStat">Monthly Earnings</h5>
+            <h4 className="areaStat"> ROI:</h4>
+            <h5 className="abbStat">ROI%</h5>
+            <Button className="col-11/12"style={{justifyContent:'center'}} variant="primary" type="submit">
+                <FontAwesomeIcon className='icon' icon={faHeart} />
+            </Button>
         </Col>
         </Row>
       </Card>
