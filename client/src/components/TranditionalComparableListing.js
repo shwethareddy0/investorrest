@@ -14,6 +14,7 @@ const TraditionalComparableListing = (props) => {
     try {
       const response = await axios.get(url, config);
       setComparableListings(response.data.content.results);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

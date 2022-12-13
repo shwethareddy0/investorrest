@@ -56,7 +56,17 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form
+        className="col-8 mx-auto p-2"
+        style={{
+          maxWidth: "800px",
+          width: "80%",
+          border: "2px solid lightgrey",
+        }}
+        noValidate
+        validated={validated}
+        onSubmit={handleFormSubmit}
+      >
         {/* show alert if server response is bad */}
         <Alert
           dismissible
@@ -67,7 +77,7 @@ const SignupForm = () => {
           Something went wrong with your signup!
         </Alert>
 
-        <Form.Group>
+        <Form.Group className="col-md-6 mx-auto">
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
             type="text"
@@ -82,7 +92,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="col-md-6 mx-auto">
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="email"
@@ -97,7 +107,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="col-md-6 mx-auto">
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -111,19 +121,21 @@ const SignupForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
-          type="submit"
-          variant="success"
-        >
-          Submit
-        </Button>
+        <Form.Group className="col-md-6 text-center mx-auto">
+          <Button
+            disabled={
+              !(
+                userFormData.username &&
+                userFormData.email &&
+                userFormData.password
+              )
+            }
+            type="submit"
+            variant="primary"
+          >
+            Submit
+          </Button>
+        </Form.Group>
       </Form>
     </>
   );
