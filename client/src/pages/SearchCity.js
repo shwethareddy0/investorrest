@@ -79,9 +79,6 @@ function SearchCity() {
         {cityResults && (
           <Col>
             <Card border="dark" style={{ width: "50rem" }}>
-              console.log({cityResults.airbnb_rental}); let nightlyRate=
-              {cityResults.airbnb_rental}; let avgNightlyRate=nightlyRate / 30;
-              console.log(nightlyRate/30.41); console.log(avgNightlyRate);
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">Area Stats</h3>
@@ -90,7 +87,9 @@ function SearchCity() {
                   <h4 className="areaStat"> Number of Airbnbs:</h4>
                   <h5 className="abbStat">{cityResults.airbnb_properties}</h5>
                   <h4 className="areaStat"> Average Nighlty Rate:</h4>
-                  <h5 className="abbStat">$nightlyRate</h5>
+                  <h5 className="abbStat">
+                    ${(cityResults.airbnb_rental / 30.41).toFixed(2)}
+                  </h5>
                   <h4 className="areaStat"> Average Monthly Earning:</h4>
                   <h5 className="abbStat">${cityResults.airbnb_rental}</h5>
                   <h4 className="areaStat"> Average Property Price:</h4>
