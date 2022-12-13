@@ -6,12 +6,16 @@ import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
 function CompareProperty() {
   const [ready, setReady] = useState(false);
   return (
-    <Container fluid className="col-11">
+    <Container fluid style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '90vh'}}>
       <Row>
         <Col>
         <Card border="dark" className="col-11">
         <Card.Header>Search an Area</Card.Header>
-        <Form className="col-11">
+        <Form style={{jusitfyContent: 'center', margin: '5px'}} className="col-11">
         <Form.Group className="mb-3" controlId="inputCity">
           <Form.Label>Street Address</Form.Label>
           <Form.Control type="text" placeholder="Optional" input="inputCity" />
@@ -51,7 +55,7 @@ function CompareProperty() {
       <Card border="dark" style={{ width: "46rem" }}>
         <Card.Header>Comparison Chart</Card.Header>
         <Row>
-        <Col>
+        <Col style={{ margin: '5px'}}>
         <h3 classNameName="card-title">Area Stats</h3>
           <h4 classNameName="areaStat"> Average Occupency Rate:</h4>
             <h5 classNameName="abbStat">Occupency Rate</h5> 

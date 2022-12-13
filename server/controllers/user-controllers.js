@@ -1,7 +1,9 @@
 const { User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 module.exports = {
-async login({ body }, res) {
+  //login
+  async login({ body }, res) {
     const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
@@ -13,5 +15,30 @@ async login({ body }, res) {
     }
     const token = signToken(user);
     res.json({ token, user });
+  },
+  //createUser 
+  async createUser({ body }, res) {
+    const user = await User.create(body);
+
+    if (!user) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    const token = signToken(user);
+    res.json({ token, user });
+  },
+  //saveProperty
+  async saveProperty({ user, body }, res){
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        {_id: user._id },
+        { $addToSet: { savedProperties: body }},
+        { new: true, runValidators: true }
+      );
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   }
+
 }
