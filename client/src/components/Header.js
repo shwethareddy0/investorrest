@@ -4,7 +4,7 @@ import AppNavbar from "./Navbar";
 
 function Header() {
   return (
-    <div>
+    <div className="mb-5">
       <AppNavbar />
     </div>
   );
