@@ -6,12 +6,17 @@ import { Card, Form, Button, Container, Row, Col }from 'react-bootstrap';
 
 function SearchCity() {
     return (
-      <Container fluid style={{ justifyContent: "center" }}>
+      <Container fluid style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '90vh',
+      }}>
         <Row>
-          <Col sm={4}>
-            <Card border="dark" style={{ width: "18rem" }}>
+          <Col>
+            <Card border="dark" style={{ width: "18rem"}}>
               <Card.Header>Check a Property</Card.Header>
-            <Form className="col-10">
+            <Form style={{jusitfyContent: 'center', margin: '5px'}} className="col-10">
             <Form.Group className="mb-3" controlId="inputCity">
               <Form.Label>City</Form.Label>
               <Form.Control type="text" placeholder="Optional" input="inputCity" />
@@ -22,15 +27,15 @@ function SearchCity() {
               <Form.Label>State</Form.Label>
               <Form.Control type="text" placeholder="Required" id="inputState" required/>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button style={{justifyContent:'center'}} variant="primary" type="submit">
               Submit
             </Button>
            </Form>
            </Card>
          </Col>
     
-        <Col sm={8}>
-            <Card border="dark" style={{ width: "50rem" }} className="col-lg-6 mb-4">
+        <Col>
+            <Card border="dark" style={{ width: "50rem" }} >
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">Area Stats</h3>
