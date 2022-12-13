@@ -2,12 +2,11 @@
 import React, { useState } from "react";
 //  import Button from 'react-bootstrap/Button';
 //  import Form from 'react-bootstrap/Form';
+import axios from "axios";
 
-import { Card, Form, Button, Container, Row, Col }from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-
-
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const config = {
   headers: {
@@ -29,35 +28,17 @@ function SearchCity() {
     }
   };
 
-    return (
-      <Container fluid style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '90vh',
-      }}>
-        <Row>
-          <Col>
-            <Card border="dark" style={{ width: "18rem"}}>
-              <Card.Header>Check a Property</Card.Header>
-            <Form style={{jusitfyContent: 'center', margin: '5px'}} className="col-10">
-            <Form.Group className="mb-3" controlId="inputCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control type="text" placeholder="Optional"  />
-              <Form.Text className="text-muted">
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="inputState">
-              <Form.Label>State</Form.Label>
-              <Form.Control type="text" placeholder="Required" required/>
-            </Form.Group>
-            <Button style={{justifyContent:'center'}} variant="primary" type="submit">
-              Submit
-            </Button>
-           </Form>
-           </Card>
-         </Col>
-    
+  return (
+    <Container
+      fluid
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "90vh",
+      }}
+    >
+      <Row>
         <Col>
           <Card border="dark" style={{ width: "18rem" }}>
             <Card.Header>Check a Property</Card.Header>
@@ -103,7 +84,6 @@ function SearchCity() {
             <Card border="dark" style={{ width: "50rem" }}>
               <div className="card">
                 <div className="card-body">
-
                   <h3 className="card-title">Area Stats</h3>
                   <h4 className="areaStat"> Average Occupency Rate:</h4>
                   <h5 className="abbStat">{cityResults.occupancy}%</h5>
@@ -117,10 +97,13 @@ function SearchCity() {
                   <h5 className="abbStat">${cityResults.airbnb_rental}</h5>
                   <h4 className="areaStat"> Average Property Price:</h4>
                   <h5 className="abbStat">${cityResults.median_price}</h5>
-                 <Button style={{justifyContent:'center'}} variant="primary" type="submit">
-                        <FontAwesomeIcon className='icon' icon={faHeart} />
-                    </Button>
-
+                  <Button
+                    style={{ justifyContent: "center" }}
+                    variant="primary"
+                    type="submit"
+                  >
+                    <FontAwesomeIcon className="icon" icon={faHeart} />
+                  </Button>
                 </div>
               </div>
               <Card.Body>
