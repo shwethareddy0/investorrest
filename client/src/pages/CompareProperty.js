@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import TraditionalComparableListing from "../components/TranditionalComparableListing";
+// import TraditionalComparableListing from "../components/TranditionalComparableListing";
 import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
 
 // 397651 - property id as an example
 function CompareProperty() {
-  const [ready, setReady] = useState(false);
+  // const [ready, setReady] = useState(false);
   return (
     <Container fluid style={{
       display: 'flex',
