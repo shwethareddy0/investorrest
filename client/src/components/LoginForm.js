@@ -48,8 +48,12 @@ const LoginForm = () => {
   return (
     <>
       <Form
-        className="col-8 mx-auto p-2 mt-5"
-        style={{ border: "2px solid lightgrey" }}
+        className="col-8 mx-auto p-2"
+        style={{
+          maxWidth: "800px",
+          width: "80%",
+          border: "2px solid lightgrey",
+        }}
         noValidate
         validated={validated}
         onSubmit={handleFormSubmit}
@@ -62,7 +66,7 @@ const LoginForm = () => {
         >
           Something went wrong with your login credentials!
         </Alert>
-        <Form.Group className="col-md-5 mx-auto">
+        <Form.Group className="col-md-6 mx-auto">
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="text"
@@ -77,7 +81,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="col-md-5 mx-auto">
+        <Form.Group className="col-md-6 mx-auto">
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -91,7 +95,7 @@ const LoginForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="col-md-5 text-center mx-auto">
+        <Form.Group className="col-md-6 text-center mx-auto">
           <Button
             disabled={!(userFormData.email && userFormData.password)}
             type="submit"
