@@ -29,7 +29,7 @@ function CompareProperty() {
     }
   };
 let interest = ({rate}/100)/12
-var mortgage = ({price}-${payment})[interest(1+interest)^360]/[(1+interest)^360-1]
+var mortgage = ({price}-${payment})[interest(1+interest)^360]/[(1+interest)^360-1
   // const [ready, setReady] = useState(false);
   return (
     <Container fluid style={{
