@@ -96,7 +96,6 @@ function SearchCity() {
            </Form>
            </Card>
          </Col>
-    
         {cityResults && (
          <Col>
             <Card border="dark" style={{ width: "50rem" }}>

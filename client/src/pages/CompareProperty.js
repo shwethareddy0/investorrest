@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import '../App.scss';
+import axios from "axios";
 // import TraditionalComparableListing from "../components/TranditionalComparableListing";
-import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
+import { Col, Card, Form, Row, Container, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,7 +14,10 @@ const config = {
 function CompareProperty() {
   const [state, setState] = useState();
   const [city, setCity] = useState();
-  const [propeeretyResults, setPropertyResults] = useState();
+  const [price, setPrice] = useState();
+  const [rate, setRate] = useState();
+  const [payment, setPayment] = useState();
+  const [propertyResults, setPropertyResults] = useState();
   const fetchPropertyDetails = async () => {
     const url = `https://cors-anywhere.herokuapp.com/https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
     try {
@@ -66,17 +70,44 @@ function CompareProperty() {
         <Row>
         <Form.Group className="col-7" controlId="inputPrice">
           <Form.Label>Property Price</Form.Label>
-          <Form.Control type="Number" placeholder="Required" id="propertyPrice" required/>
+          <Form.Control 
+          type="Number" 
+          placeholder="Required"
+          input="inputPrice" 
+          value={price}
+          onChange={(e) => setPrice(e.target.value)} 
+          required/>
         </Form.Group>
         <Form.Group className="col-5" controlId="inputRate">
           <Form.Label>Interest Rate</Form.Label>
-          <Form.Control type="Number" format={"### %"} placeholder="Required" id="interest Rate" required/>
+          <Form.Control 
+          type="Number" 
+          step="any" 
+          format={"### %"} 
+          placeholder="Required"
+          input="inputRate" 
+          value={rate}
+          onChange={(e) => setRate(e.target.value)}  
+          required/>
         </Form.Group>
         </Row>
+        <Row>
         <Form.Group className="col-9" controlId="downPayment">
           <Form.Label>Down Payment</Form.Label>
-          <Form.Control  type="Number" placeholder="If none enter 0" id="downPayment" required/>
+          <Form.Control  
+          type="Number" 
+          placeholder="If none enter 0"
+          input="downPayment" 
+          value={payment}
+          onChange={(e) => setPayment(e.target.value)}
+          required/>
         </Form.Group>
+        <DropdownButton id="dropdown-item-button" title="Loan Duration">
+      <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
+      <Dropdown.Item as="button">15</Dropdown.Item>
+      <Dropdown.Item as="button">30</Dropdown.Item>
+    </DropdownButton>
+        </Row>
         <Button
           style={{ justifyContent: "center" }}
           variant="primary"
