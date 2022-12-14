@@ -5,8 +5,26 @@ import { Col, Card, Form, Row, Container, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-// 397651 - property id as an example
+const config = {
+  headers: {
+    "x-api-key": "ec5fbc97-8313-4c5d-ac09-3e59940a364b",
+  },
+};
 function CompareProperty() {
+  const [state, setState] = useState();
+  const [city, setCity] = useState();
+  const [propeeretyResults, setPropertyResults] = useState();
+  const fetchPropertyDetails = async () => {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
+    try {
+      const response = await axios.get(url, config);
+      setPropertyResults(response.data.content);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // const [ready, setReady] = useState(false);
   return (
     <Container fluid style={{
@@ -26,11 +44,23 @@ function CompareProperty() {
         <Row>
         <Form.Group className="col-6" controlId="cityInput">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="Required"  required/>
+          <Form.Control 
+          type="text" 
+          placeholder="Required" 
+          input="cityInput" 
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          required/>
         </Form.Group>
         <Form.Group className="col-6" controlId="stateInput">
           <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="CA" id="inputState" required/>
+          <Form.Control 
+          type="text" 
+          placeholder="CA"
+          input="stateInput"
+          value={state}
+          onChange={(e) => setState(e.target.value)} 
+          required/>
         </Form.Group>
         </Row>
         <Row>
@@ -47,13 +77,17 @@ function CompareProperty() {
           <Form.Label>Down Payment</Form.Label>
           <Form.Control  type="Number" placeholder="If none enter 0" id="downPayment" required/>
         </Form.Group>
-        <Button  variant="primary" type="submit">
+        <Button
+          style={{ justifyContent: "center" }}
+          variant="primary"
+          onClick={fetchPropertyDetails}
+        >
           Submit
         </Button>
         </Form>
         </Card>
       </Col>
-      
+      {propertyResults && (
       <Col>
       <Card border="dark" style={{ width: "46rem" }}>
         <Card.Header className ="comparison">Comparison Chart</Card.Header>
@@ -84,6 +118,7 @@ function CompareProperty() {
         </Row>
       </Card>
       </Col>
+      )}
       </Row>
       </Container>
   );
