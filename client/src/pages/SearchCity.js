@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHeart } from "@fortawesome/free-solid-svg-icons";
 // import { faUnderline } from "@fortawesome/free-solid-svg-icons";
@@ -19,6 +20,20 @@ function SearchCity() {
       console.log(error);
     }
   };
+  const getLocation = async () => {
+
+    fetch(`https://api.api-ninjas.com/v1/geocoding?city=${city}`, {
+      headers: {
+        "X-Api-Key": "h3rta61reyR1vGE54NdvUg==KxJvxJiNvhkx8xRr",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data[0].latitude, data[0].longitude));
+      
+  }
+  //Map
+  const position = [51.505, -0.09]
+
 
   return (
     <Container
@@ -36,7 +51,7 @@ function SearchCity() {
             style={{ width: "20rem", border: "2px solid lightgrey" }}
           >
             <Card.Header>
-              <strong>Check a Property</strong>
+              <strong>Search an Area</strong>
             </Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
@@ -58,7 +73,6 @@ function SearchCity() {
                 <Form.Control
                   type="text"
                   placeholder="Required"
-                  id="inputState"
                   required
                   value={state}
                   onChange={(e) => setState(e.target.value)}
@@ -68,7 +82,10 @@ function SearchCity() {
                 style={{ justifyContent: "center" }}
                 variant="primary"
                 disabled={!city || !state}
-                onClick={fetchCityDetails}
+                onClick={event => {
+                  fetchCityDetails();
+                  getLocation();
+                }}
               >
                 Submit
               </Button>
@@ -122,6 +139,20 @@ function SearchCity() {
               mortgage, please <a href="/login">Login</a> or{" "}
               <a href="/signup">Signup</a>
             </p>
+          </Col>
+
+        )}
+        {cityResults && (
+          <Col>
+            <Card className="mb-3"
+              style={{width:"30rem", height: "30rem", border: "2px solid lightgrey" }}>
+              <MapContainer style={{height: "30rem"}}center={position} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </MapContainer>
+            </Card>
           </Col>
         )}
       </Row>
