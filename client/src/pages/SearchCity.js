@@ -8,19 +8,14 @@ import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const config = {
-  headers: {
-    "x-api-key": "ec5fbc97-8313-4c5d-ac09-3e59940a364b",
-  },
-};
 function SearchCity() {
   const [state, setState] = useState("CA");
   const [city, setCity] = useState("Berkeley");
   const [cityResults, setCityResults] = useState();
   const fetchCityDetails = async () => {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
+    const url = `http://localhost:3001/cors?url=https://api.mashvisor.com/v1.1/client/city/investment/${state}/${city}`;
     try {
-      const response = await axios.get(url, config);
+      const response = await axios.get(url);
       setCityResults(response.data.content);
       console.log(response);
     } catch (error) {
