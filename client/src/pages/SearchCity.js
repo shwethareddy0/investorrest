@@ -28,7 +28,7 @@ function SearchCity() {
     }
   };
 
-  return (
+    return (
     <Container
       fluid
       style={{
@@ -38,8 +38,8 @@ function SearchCity() {
         height: "90vh",
       }}
     >
-      <Row>
-        <Col>
+        <Row>
+          <Col>
 
           <Card border="dark" style={{ width: "40rem" }} >
             <div className="card">
@@ -57,16 +57,16 @@ function SearchCity() {
                 <h5 className="abbStat">"Avg Property Price"</h5>
               </div>
             </div>
-          </Card>
+          </Card> 
 
           <Card border="dark" style={{ width: "18rem" }}>
-            <Card.Header>Check a Property</Card.Header>
+              <Card.Header>Check a Property</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-10"
             >
-              <Form.Group className="mb-3" controlId="inputCity">
-                <Form.Label>City</Form.Label>
+            <Form.Group className="mb-3" controlId="inputCity">
+              <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Optional"
@@ -75,46 +75,45 @@ function SearchCity() {
                   onChange={(e) => setCity(e.target.value)}
                 />
                 <Form.Text className="text-muted"></Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="inputState">
-                <Form.Label>State</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="inputState">
+              <Form.Label>State</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Required"
-                  id="inputState"
                   required
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                 />
-              </Form.Group>
+            </Form.Group>
               <Button
                 style={{ justifyContent: "center" }}
                 variant="primary"
                 onClick={fetchCityDetails}
               >
-                Submit
-              </Button>
-            </Form>
-          </Card>
-        </Col>
-
+              Submit
+            </Button>
+           </Form>
+           </Card>
+         </Col>
+    
         {cityResults && (
-          <Col>
+         <Col>
             <Card border="dark" style={{ width: "50rem" }}>
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">Area Stats</h3>
-                  <h4 className="areaStat"> Average Occupency Rate:</h4>
+                    <h4 className="areaStat"> Average Occupency Rate:</h4>
                   <h5 className="abbStat">{cityResults.occupancy}%</h5>
-                  <h4 className="areaStat"> Number of Airbnbs:</h4>
+                    <h4 className="areaStat"> Number of Airbnbs:</h4>
                   <h5 className="abbStat">{cityResults.airbnb_properties}</h5>
-                  <h4 className="areaStat"> Average Nighlty Rate:</h4>
+                    <h4 className="areaStat"> Average Nighlty Rate:</h4>
                   <h5 className="abbStat">
                     ${(cityResults.airbnb_rental / 30.41).toFixed(2)}
                   </h5>
-                  <h4 className="areaStat"> Average Monthly Earning:</h4>
+                    <h4 className="areaStat"> Average Monthly Earning:</h4>
                   <h5 className="abbStat">${cityResults.airbnb_rental}</h5>
-                  <h4 className="areaStat"> Average Property Price:</h4>
+                    <h4 className="areaStat"> Average Property Price:</h4>
                   <h5 className="abbStat">${cityResults.median_price}</h5>
                   <Button
                     style={{ justifyContent: "center" }}
@@ -129,12 +128,12 @@ function SearchCity() {
               <Card.Body>
                 <Card.Link href="/myhomes">My Homes</Card.Link>
               </Card.Body>
-            </Card>
+            </Card> 
           </Col>
         )}
-      </Row>
-    </Container>
-  );
+        </Row>
+      </Container>
+    );
 }
 
 export default SearchCity;
