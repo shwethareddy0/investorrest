@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHeart } from "@fortawesome/free-solid-svg-icons";
 // import { faUnderline } from "@fortawesome/free-solid-svg-icons";
@@ -136,8 +138,14 @@ function SearchCity() {
             <br />
             <p>
               To know more about the property details and to calculate the
-              mortgage, please <a href="/login">Login</a> or{" "}
-              <a href="/signup">Signup</a>
+              mortgage, please{" "}
+              <Nav.Link activeclassname="active" as={Link} to="/login">
+                login
+              </Nav.Link>{" "}
+              or{" "}
+              <Nav.Link activeclassname="active" as={Link} to="/signup">
+                signup
+              </Nav.Link>
             </p>
           </Col>
 

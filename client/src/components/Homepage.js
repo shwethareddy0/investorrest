@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 // Home page of the app
 function Homepage() {
@@ -22,7 +24,9 @@ function Homepage() {
               <ListGroup.Item>Boston</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="/search">Search</Card.Link>
+              <Nav.Link activeclassname="active" as={Link} to="/search">
+                Search
+              </Nav.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -42,7 +46,9 @@ function Homepage() {
               <ListGroup.Item>South Carolina</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="/search">Search</Card.Link>
+              <Nav.Link activeclassname="active" as={Link} to="/search">
+                Search
+              </Nav.Link>
             </Card.Body>
           </Card>
         </Col>
