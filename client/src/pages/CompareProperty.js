@@ -3,28 +3,27 @@ import "../App.scss";
 import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios";
 
 function CompareProperty() {
   const [state, setState] = useState();
-const [city, setCity] = useState();
-const [price, setPrice] = useState();
-const [rate, setRate] = useState();
-const [payment, setPayment] = useState();
-const [propertyResults, setPropertyResults] = useState();
-const fetchPropertyDetails = async () => {
-  const url = `https://cors-anywhere.herokuapp.com/https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
-  try {
-    const response = await axios.get(url, config);
-    setPropertyResults(response.data.content);
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
-let interest = ({rate}/100)/12
-var mortgage = ({price}-${payment})[interest(1+interest)^360]/[(1+interest)^360-1
-
+  const [city, setCity] = useState();
+  const [price, setPrice] = useState();
+  const [rate, setRate] = useState();
+  const [payment, setPayment] = useState();
+  const [propertyResults, setPropertyResults] = useState();
+  const fetchPropertyDetails = async () => {
+    const url = `/cors?url=https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
+    try {
+      const response = await axios.get(url);
+      setPropertyResults(response.data.content);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // const interest = ({rate}/100)/12
+  // var mortgage = ({price}-${payment})[interest(1+interest)^360]/[(1+interest)^360-1
 
   return (
     <Container
