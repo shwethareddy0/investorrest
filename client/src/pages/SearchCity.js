@@ -83,18 +83,27 @@ function SearchCity() {
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">Area Stats</h3>
-                  <h4 className="areaStat"> Average Occupency Rate:</h4>
-                  <h5 className="abbStat">{cityResults.occupancy}%</h5>
-                  <h4 className="areaStat"> Number of Airbnbs:</h4>
-                  <h5 className="abbStat">{cityResults.airbnb_properties}</h5>
-                  <h4 className="areaStat"> Average Nighlty Rate:</h4>
-                  <h5 className="abbStat">
-                    ${(cityResults.airbnb_rental / 30.41).toFixed(2)}
+                  <h5 className="areaStat">
+                    {" "}
+                    Average Occupency Rate: {cityResults.occupancy}%
                   </h5>
-                  <h4 className="areaStat"> Average Monthly Earning:</h4>
-                  <h5 className="abbStat">${cityResults.airbnb_rental}</h5>
-                  <h4 className="areaStat"> Average Property Price:</h4>
-                  <h5 className="abbStat">${cityResults.median_price}</h5>
+                  <h5 className="areaStat">
+                    {" "}
+                    Number of Airbnbs: {cityResults.airbnb_properties}
+                  </h5>
+                  <h5 className="areaStat">
+                    {" "}
+                    Average Nighlty Rate: $
+                    {(cityResults.airbnb_rental / 30.41).toFixed(2)}
+                  </h5>
+                  <h5 className="areaStat">
+                    {" "}
+                    Average Monthly Earning: ${cityResults.airbnb_rental}
+                  </h5>
+                  <h5 className="areaStat">
+                    {" "}
+                    Average Property Price: ${cityResults.median_price}
+                  </h5>
                   <Button
                     style={{ justifyContent: "center" }}
                     variant="primary"
@@ -104,9 +113,6 @@ function SearchCity() {
                   </Button>
                 </div>
               </div>
-              <Card.Body>
-                <Card.Link href="/myhomes">My Homes</Card.Link>
-              </Card.Body>
             </Card>
           </Col>
         )}
