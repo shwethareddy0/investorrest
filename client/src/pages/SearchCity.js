@@ -10,7 +10,7 @@ function SearchCity() {
   const [city, setCity] = useState();
   const [cityResults, setCityResults] = useState();
   const fetchCityDetails = async () => {
-    const url = `http://localhost:3001/cors?url=https://api.mashvisor.com/v1.1/client/city/investment/${state}/${city}`;
+    const url = `/cors?url=https://api.mashvisor.com/v1.1/client/city/investment/${state}/${city}`;
     try {
       const response = await axios.get(url);
       setCityResults(response.data.content);
