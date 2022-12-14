@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../App.scss";
-// import TraditionalComparableListing from "../components/TranditionalComparableListing";
 import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -14,14 +13,13 @@ function CompareProperty() {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         height: "90vh",
       }}
       className="comparisonPage"
     >
       <Row>
         <Col>
-          <Card border="dark" className="col-11">
+          <Card style={{ border: "2px solid lightgrey" }}>
             <Card.Header>Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
@@ -84,7 +82,7 @@ function CompareProperty() {
         </Col>
 
         <Col>
-          <Card border="dark" style={{ width: "46rem" }}>
+          <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
             <Card.Header className="comparison">Comparison Chart</Card.Header>
             <Row>
               <Col style={{ margin: "5px" }}>
