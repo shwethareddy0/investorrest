@@ -119,8 +119,8 @@ function SearchCity() {
             <br />
             <p>
               To know more about the property details and to calculate the
-              mortgage, please <a href="/login">Login</a> or{" "}
-              <a href="/signup">Signup</a>
+              mortgage, please <a href="./login">Login</a> or{" "}
+              <a href="./signup">Signup</a>
             </p>
           </Col>
         )}

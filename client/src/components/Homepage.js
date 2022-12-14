@@ -22,7 +22,7 @@ function Homepage() {
               <ListGroup.Item>Boston</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="/search">Search</Card.Link>
+              <Card.Link href="./search">Search</Card.Link>
             </Card.Body>
           </Card>
         </Col>
