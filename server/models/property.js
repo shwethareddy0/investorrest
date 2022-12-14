@@ -1,17 +1,31 @@
-const { Schema, STATES } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const propertySchema = new Schema({
-//avg-price
-//number of airbnbs
-//avg-occupancy
-//airbnb rental rates per month
-
-avg-propertyprice
-   no-of-airbnbs
-  avg-occupency
-  airbnb-rental-rates-permonth
-STATE
-ciy
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  occupancy: {
+    type: Number,
+    required: true,
+  },
+  airbnb_properties: {
+    type: Number,
+    required: true,
+  },
+  airbnb_rental: {
+    type: Number,
+    required: true,
+  },
+  avg_nightly_rate: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = propertySchema;

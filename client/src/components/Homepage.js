@@ -19,6 +19,7 @@ function Homepage() {
               <ListGroup.Item>White Sulphur Springs</ListGroup.Item>
               <ListGroup.Item>New Jersey</ListGroup.Item>
               <ListGroup.Item>Portland</ListGroup.Item>
+              <ListGroup.Item>Boston</ListGroup.Item>
             </ListGroup>
             <Card.Body>
               <Card.Link href="/search">Search</Card.Link>
@@ -27,7 +28,7 @@ function Homepage() {
         </Col>
         <Col>
           <Card
-            className="mb-3"
+            className="mb-5"
             style={{ width: "18rem", border: "2px solid lightgrey" }}
           >
             <Card.Header className="ir-card-header">
@@ -38,6 +39,7 @@ function Homepage() {
               <ListGroup.Item>California</ListGroup.Item>
               <ListGroup.Item>Florida</ListGroup.Item>
               <ListGroup.Item>North Carolina</ListGroup.Item>
+              <ListGroup.Item>South Carolina</ListGroup.Item>
             </ListGroup>
             <Card.Body>
               <Card.Link href="/search">Search</Card.Link>
@@ -54,10 +56,11 @@ function Homepage() {
             </Card.Header>
             <ListGroup variant="flush">
               <ListGroup.Item>Total number of Airbnbs</ListGroup.Item>
-              <ListGroup.Item>Percaentage over long term rental</ListGroup.Item>
-              <ListGroup.Item>year over year growth</ListGroup.Item>
-              <ListGroup.Item>Percaentage over long term rental</ListGroup.Item>
-              <ListGroup.Item>year over year growth</ListGroup.Item>
+              <ListGroup.Item>Percentage over long term rental</ListGroup.Item>
+              <ListGroup.Item>Year over year growth</ListGroup.Item>
+              <ListGroup.Item>Average Occupancy</ListGroup.Item>
+              <ListGroup.Item>Return of Investment</ListGroup.Item>
+              <ListGroup.Item>Rental Rates</ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>

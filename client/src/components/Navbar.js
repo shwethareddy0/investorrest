@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import Auth from "../utils/auth";
-import "../App.scss"
+import "../App.scss";
 
 function AppNavbar() {
   return (
@@ -30,7 +30,9 @@ function AppNavbar() {
                   <Nav.Link as={Link} to="/saved">
                     <h4>My Homes</h4>
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>
+                    <h4>Logout</h4>
+                  </Nav.Link>
                 </>
               ) : (
                 <>

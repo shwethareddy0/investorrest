@@ -4,11 +4,6 @@ import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const config = {
-  headers: {
-    "x-api-key": "ec5fbc97-8313-4c5d-ac09-3e59940a364b",
-  },
-};
 
 function CompareProperty() {
   const [state, setState] = useState();
