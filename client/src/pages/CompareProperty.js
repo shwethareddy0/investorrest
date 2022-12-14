@@ -92,7 +92,7 @@ function CompareProperty() {
         </Form.Group>
         </Row>
         <Row>
-        <Form.Group className="col-9" controlId="downPayment">
+        <Form.Group className="col-7" controlId="downPayment">
           <Form.Label>Down Payment</Form.Label>
           <Form.Control  
           type="Number" 
@@ -102,11 +102,15 @@ function CompareProperty() {
           onChange={(e) => setPayment(e.target.value)}
           required/>
         </Form.Group>
-        <DropdownButton id="dropdown-item-button" title="Loan Duration">
-      <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
-      <Dropdown.Item as="button">15</Dropdown.Item>
-      <Dropdown.Item as="button">30</Dropdown.Item>
-    </DropdownButton>
+        <Form.Group className="col-4" controlId="mortgage">
+        <Form.Label>Mortgage</Form.Label>
+        <h5>(mortgage)</h5>
+        </Form.Group>
+          
+        {/* <DropdownButton className ="col-3" id="dropdown-item-button" title="Loan Duration">
+          <Dropdown.Item as="buttun">15</Dropdown.Item>
+          <Dropdown.Item as="button">30</Dropdown.Item>
+        </DropdownButton> */}
         </Row>
         <Button
           style={{ justifyContent: "center" }}
