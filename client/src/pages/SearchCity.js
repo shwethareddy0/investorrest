@@ -33,7 +33,7 @@ function SearchCity() {
         <Col>
           <Card
             className="mb-3"
-            style={{ width: "18rem", border: "2px solid lightgrey" }}
+            style={{ width: "20rem", border: "2px solid lightgrey" }}
           >
             <Card.Header>
               <strong>Check a Property</strong>
@@ -114,6 +114,14 @@ function SearchCity() {
                 </div>
               </div>
             </Card>
+            <br />
+            <br />
+            <br />
+            <p>
+              To know more about the property details and to calculate the
+              mortgage, please <a href="/login">Login</a> or{" "}
+              <a href="/signup">Signup</a>
+            </p>
           </Col>
         )}
       </Row>
