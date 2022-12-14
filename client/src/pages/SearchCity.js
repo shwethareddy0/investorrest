@@ -1,16 +1,13 @@
-// import { faUnderline } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-//  import Button from 'react-bootstrap/Button';
-//  import Form from 'react-bootstrap/Form';
 import axios from "axios";
-
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart } from "@fortawesome/free-solid-svg-icons";
+// import { faUnderline } from "@fortawesome/free-solid-svg-icons";
 
 function SearchCity() {
-  const [state, setState] = useState("CA");
-  const [city, setCity] = useState("Berkeley");
+  const [state, setState] = useState();
+  const [city, setCity] = useState();
   const [cityResults, setCityResults] = useState();
   const fetchCityDetails = async () => {
     const url = `http://localhost:3001/cors?url=https://api.mashvisor.com/v1.1/client/city/investment/${state}/${city}`;
@@ -26,6 +23,7 @@ function SearchCity() {
   return (
     <Container
       fluid
+      className="ml-3"
       style={{
         display: "flex",
         height: "90vh",
@@ -33,8 +31,13 @@ function SearchCity() {
     >
       <Row>
         <Col>
-          <Card border="dark" style={{ width: "18rem" }}>
-            <Card.Header>Check a Property</Card.Header>
+          <Card
+            className="mb-3"
+            style={{ width: "18rem", border: "2px solid lightgrey" }}
+          >
+            <Card.Header>
+              <strong>Check a Property</strong>
+            </Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-10"
@@ -43,7 +46,7 @@ function SearchCity() {
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Optional"
+                  placeholder="Required"
                   input="inputCity"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
@@ -64,6 +67,7 @@ function SearchCity() {
               <Button
                 style={{ justifyContent: "center" }}
                 variant="primary"
+                disabled={!city || !state}
                 onClick={fetchCityDetails}
               >
                 Submit
@@ -74,10 +78,18 @@ function SearchCity() {
 
         {cityResults && (
           <Col>
-            <Card border="dark" style={{ width: "50rem" }}>
+            <Card
+              className="mb-3"
+              style={{ width: "30rem", border: "2px solid lightgrey" }}
+            >
               <div className="card">
+                <Card.Header>
+                  <h4>
+                    {" "}
+                    <strong>Area Stats</strong>
+                  </h4>
+                </Card.Header>
                 <div className="card-body">
-                  <h3 className="card-title">Area Stats</h3>
                   <h5 className="areaStat">
                     {" "}
                     Average Occupency Rate: {cityResults.occupancy}%
@@ -99,13 +111,6 @@ function SearchCity() {
                     {" "}
                     Average Property Price: ${cityResults.median_price}
                   </h5>
-                  <Button
-                    style={{ justifyContent: "center" }}
-                    variant="primary"
-                    type="submit"
-                  >
-                    <FontAwesomeIcon className="icon" icon={faHeart} />
-                  </Button>
                 </div>
               </div>
             </Card>

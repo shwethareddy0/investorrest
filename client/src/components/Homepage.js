@@ -28,7 +28,7 @@ function Homepage() {
         </Col>
         <Col>
           <Card
-            className="mb-3"
+            className="mb-5"
             style={{ width: "18rem", border: "2px solid lightgrey" }}
           >
             <Card.Header className="ir-card-header">
