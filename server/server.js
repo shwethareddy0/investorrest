@@ -2,14 +2,14 @@ const express = require("express");
 // const path = require('path');
 const db = require("./config/connection");
 const routes = require("./routes");
-var cors = require("cors");
+// var cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 app.use((req, res, next) => {
   res.header(
