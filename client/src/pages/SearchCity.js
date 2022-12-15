@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { MapContainer, TileLayer } from 'react-leaflet'
 import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +23,28 @@ function SearchCity() {
     }
   };
 
+  //GeoLocation
+  const [geoResults, setGeoResults] = useState();
+  const getLocation = () => {
+    
+    fetch(`https://api.api-ninjas.com/v1/geocoding?city=${city}`, {
+      headers: {
+        "X-Api-Key": "h3rta61reyR1vGE54NdvUg==KxJvxJiNvhkx8xRr",
+      },
+    })
+    .then((response) => response.json()    )
+    .then((data) => { setGeoResults([data[0].latitude, data[0].longitude])
+      position = [data[0].latitude, data[0].longitude]
+      console.log(position)
+      
+    });
+    
+  }
+  var position = [];
+  
+  //Map
+
+
   return (
     <Container
       fluid
@@ -38,7 +61,7 @@ function SearchCity() {
             style={{ width: "20rem", border: "2px solid lightgrey" }}
           >
             <Card.Header>
-              <strong>Check a Property</strong>
+              <strong>Search an Area</strong>
             </Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
@@ -51,7 +74,8 @@ function SearchCity() {
                   placeholder="Required"
                   input="inputCity"
                   value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={(e) => {setCity(e.target.value); }}
+                  
                 />
                 <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
@@ -60,7 +84,6 @@ function SearchCity() {
                 <Form.Control
                   type="text"
                   placeholder="Required"
-                  id="inputState"
                   required
                   value={state}
                   onChange={(e) => setState(e.target.value)}
@@ -70,7 +93,10 @@ function SearchCity() {
                 style={{ justifyContent: "center" }}
                 variant="primary"
                 disabled={!city || !state}
-                onClick={fetchCityDetails}
+                onClick={event => {
+                  fetchCityDetails();
+                  getLocation();
+                }}
               >
                 Submit
               </Button>
@@ -130,6 +156,20 @@ function SearchCity() {
                 signup
               </Nav.Link>
             </p>
+          </Col>
+
+        )}
+        {geoResults && (
+          <Col>
+            <Card className="mb-3"
+              style={{ width: "30rem", height: "30rem", border: "2px solid lightgrey" }}>
+              <MapContainer style={{ height: "30rem" }} center={geoResults} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </MapContainer>
+            </Card>
           </Col>
         )}
       </Row>
