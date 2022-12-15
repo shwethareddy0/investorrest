@@ -7,44 +7,51 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
-
-  
   const [price, setPrice] = useState();
+  const [address, setAddress] = useState();
+  const [mortgage, setMortgage] = useState();
   const [rate, setRate] = useState();
   const [payment, setPayment] = useState();
-  const [state, setState] = useState("CA");
-  const [city, setCity] = useState("Berkeley");
+  const [state, setState] = useState();
+  const [city, setCity] = useState();
   const [propertyResults, setPropertyResults] = useState();
 
   const fetchPropertyDetails = async () => {
-  
     const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
-    
+
     try {
       const response = await axios.get(url);
       console.log(response);
       setPropertyResults(response.data.content);
+      // Mortgage evaluation
+      var interest = rate / 100 / 12;
+      var mortgage =
+        (price - payment) *
+        interest *
+        (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
+      setMortgage(mortgage);
+      console.log(mortgage);
+      console.log(interest);
     } catch (error) {
       console.log(error);
     }
   };
 
-
-  var interest = ((rate/100)/12)
-  var mortgage = (price - payment) * interest * ( Math.pow(1+interest, 360) / ( Math.pow(1+interest, 360) - 1 ) )
-console.log(mortgage)
-console.log(interest)
-
   function saveHome() {
     axios.post(
       "/api/homes/save",
       {
-        city: "Cupertino",
-        state: "CA",
-        occupancy: 50,
-        airbnb_properties: 500,
-        airbnb_rental: 4100,
-        avg_nightly_rate: 100,
+        city: city,
+        state: state,
+        property_price: price,
+        interest_rate: rate,
+        down_payment: payment,
+        street_address: address,
+        mortgage: mortgage,
+        avg_occupancy: propertyResults.avg_occupancy,
+        avg_airbnb_rental: propertyResults.avg_airbnb_rental,
+        avg_nightly_price: propertyResults.avg_nightly_price,
+        avg_airbnb_ROI: propertyResults.avg_airbnb_ROI,
       },
       {
         headers: {
@@ -53,7 +60,6 @@ console.log(interest)
       }
     );
   }
-
 
   return (
     <Container
@@ -68,14 +74,19 @@ console.log(interest)
       <Row>
         <Col>
           <Card style={{ border: "2px solid lightgrey" }}>
-            <Card.Header>Search an Area</Card.Header>
+            <Card.Header className="ir-card-header">Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-11"
             >
               <Form.Group className="mb-3" controlId="inputAddress">
                 <Form.Label>Street Address</Form.Label>
-                <Form.Control type="text" placeholder="Optional" />
+                <Form.Control
+                  type="text"
+                  placeholder="Optional"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
               </Form.Group>
               <Row>
                 <Form.Group className="col-6" controlId="cityInput">
@@ -143,38 +154,43 @@ console.log(interest)
           <Col>
             <Card
               className="mb-3"
-              style={{ width: "46rem", border: "2px solid lightgrey" }}
+              style={{ width: "60rem", border: "2px solid lightgrey" }}
             >
-              <Card.Header className="comparison">Comparison Chart</Card.Header>
+              <Card.Header className="comparison ir-card-header">
+                <h4>Comparison Chart</h4>
+              </Card.Header>
               <Row>
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
-                  <h4 className="areaStat"> Average Occupency Rate:</h4>
-                  <h5 className="abbStat">
-                    Occupency Rate: {propertyResults.avg_occupancy.toFixed(2)}%
-                  </h5>
-                  <h4 className="areaStat"> Average Nightly Rate:</h4>
-                  <h5 className="abbStat">
-                    Nightly Rate: {propertyResults.avg_nightly_price.toFixed(2)}
-                    $
-                  </h5>
-                  <h4 className="areaStat"> Average Monthly Earnings:</h4>
-                  <h5 className="abbStat">
-                    Monthly Earnings:{" "}
-                    {propertyResults.avg_airbnb_rental.toFixed(2)}$
-                  </h5>
+                  <br />
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Occupency Rate:{" "}
+                    {propertyResults.avg_occupancy.toFixed(2)}%
+                  </h4>
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Nightly Rate: $
+                    {propertyResults.avg_nightly_price.toFixed(2)}
+                  </h4>
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Monthly Earnings: $
+                    {propertyResults.avg_airbnb_rental.toFixed(2)}
+                  </h4>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
+                  <br />
                   <h4 className="areaStat">Break Even Occupency Rate:</h4>
                   <h5 className="abbStat">Occupency Rate</h5>
                   <h4 className="areaStat"> Break Even Nightly Rate:</h4>
                   <h5 className="abbStat">Nightly Rate</h5>
                   <h4 className="areaStat"> Potential Monthly Earnings:</h4>
                   <h5 className="abbStat">Monthly Earnings</h5>
-                  <h4 className="areaStat"> ROI:</h4>
-                  <h5 className="abbStat">
-                    ROI%: {propertyResults.avg_airbnb_ROI.toFixed(2)}$
+                  <h5 className="areaStat">
+                    {" "}
+                    ROI: {propertyResults.avg_airbnb_ROI.toFixed(2)}%
                   </h5>
                   <Button
                     className="col-11/12"
@@ -188,7 +204,9 @@ console.log(interest)
                 </Col>
               </Row>
               <Card.Body>
-                <Card.Link href="/myhomes">My Homes</Card.Link>
+                <Card.Link href="/myhomes">
+                  <h4>My Homes</h4>
+                </Card.Link>
               </Card.Body>
             </Card>
           </Col>
