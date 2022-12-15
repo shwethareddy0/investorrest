@@ -12,8 +12,8 @@ function CompareProperty() {
   const [mortgage, setMortgage] = useState();
   const [rate, setRate] = useState();
   const [payment, setPayment] = useState();
-  const [state, setState] = useState("CA");
-  const [city, setCity] = useState("Berkeley");
+  const [state, setState] = useState();
+  const [city, setCity] = useState();
   const [propertyResults, setPropertyResults] = useState();
 
   const fetchPropertyDetails = async () => {
@@ -74,7 +74,7 @@ function CompareProperty() {
       <Row>
         <Col>
           <Card style={{ border: "2px solid lightgrey" }}>
-            <Card.Header>Search an Area</Card.Header>
+            <Card.Header className="ir-card-header">Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-11"
@@ -156,7 +156,9 @@ function CompareProperty() {
               className="mb-3"
               style={{ width: "60rem", border: "2px solid lightgrey" }}
             >
-              <Card.Header className="comparison">Comparison Chart</Card.Header>
+              <Card.Header className="comparison ir-card-header">
+                <h4>Comparison Chart</h4>
+              </Card.Header>
               <Row>
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
@@ -168,13 +170,13 @@ function CompareProperty() {
                   </h4>
                   <h4 className="areaStat">
                     {" "}
-                    Average Nightly Rate:{" "}
-                    {propertyResults.avg_nightly_price.toFixed(2)}$
+                    Average Nightly Rate: $
+                    {propertyResults.avg_nightly_price.toFixed(2)}
                   </h4>
                   <h4 className="areaStat">
                     {" "}
-                    Average Monthly Earnings:
-                    {propertyResults.avg_airbnb_rental.toFixed(2)}$
+                    Average Monthly Earnings: $
+                    {propertyResults.avg_airbnb_rental.toFixed(2)}
                   </h4>
                 </Col>
                 <Col>

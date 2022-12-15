@@ -53,10 +53,18 @@ function MyHomes() {
               <p>Property Price:${property.property_price}</p>
               <p>Interest Rate:{property.interest_rate}%</p>
               <p>Down Payment: ${property.down_payment}</p>
-              <p> Average Occupency Rate: {property.avg_occupancy}</p>
-              <p>Average Nightly Rate:${property.avg_nightly_price}</p>
-              <p>Average Monthly Earnings: ${property.avg_airbnb_rental}</p>
-              <p> ROI:{property.avg_airbnb_ROI}%</p>
+              <p>
+                {" "}
+                Average Occupency Rate: {property.avg_occupancy.toFixed(2)}%
+              </p>
+              <p>
+                Average Nightly Rate:${property.avg_nightly_price.toFixed(2)}
+              </p>
+              <p>
+                Average Monthly Earnings: $
+                {property.avg_airbnb_rental.toFixed(2)}
+              </p>
+              <p> ROI:{property.avg_airbnb_ROI.toFixed(2)}%</p>
               <FontAwesomeIcon
                 className="icon"
                 icon={faTrashCan}
