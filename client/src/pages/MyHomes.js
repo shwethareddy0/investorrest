@@ -21,17 +21,20 @@ function MyHomes() {
   return (
     <Col>
       {savedProperties.map((property) => (
-        <Card border="dark" style={{ width: "18rem" }}>
-          <Card.Header>My MyHomes</Card.Header>
+        <Card
+          className="mb-3"
+          style={{ width: "30rem", border: "2px solid lightgrey" }}
+        >
+          <Card.Header className="ir-card-header">My saved homes</Card.Header>
           <div className="card">
             <div className="card-body">
-              <h3 className="card-title">Street Address: {property.city}</h3>
-              <h4 className="">Monthly Earnings: {property.airbnb_rental}</h4>
-              <h4 className="">
+              <h5 className="card-title">Street Address: {property.city}</h5>
+              <h5 className="">Monthly Earnings: ${property.airbnb_rental}</h5>
+              <h5 className="">
                 {" "}
-                Average Nighlty Rate: {property.avg_nightly_rate}
-              </h4>
-              <h4 className=""> ROI</h4>
+                Average Nighlty Rate: ${property.avg_nightly_rate}
+              </h5>
+              <h5 className=""> ROI:</h5>
             </div>
           </div>
         </Card>

@@ -120,7 +120,7 @@ function CompareProperty() {
                 style={{ justifyContent: "center" }}
                 variant="primary"
                 disabled={!city || !state}
-                onClick={saveHome}
+                onClick={fetchPropertyDetails}
               >
                 Submit
               </Button>
