@@ -9,8 +9,11 @@ import Auth from "../utils/auth";
 function CompareProperty() {
   const [state, setState] = useState("CA");
   const [city, setCity] = useState("Berkeley");
+  const[rate, setRate] = useState();
+  const [price, setPrice] = useState();
+  const [payment, setPayment] = useState();
   const [propertyResults, setPropertyResults] = useState();
-
+  
   const fetchPropertyDetails = async () => {
     const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
     try {
@@ -40,9 +43,10 @@ function CompareProperty() {
       }
     );
   }
-  // var interest = (rate/100)/12
-  // var mortgage = ({price}-{payment})[interest(1+interest)^360]/[(1+interest)^360-1]
-  // console.log(mortgage)
+  var interest = (rate/100)/12
+  var mortgage = (price - payment) * interest * ( Math.pow(1+interest, 360) / ( Math.pow(1+interest, 360) - 1 ) )
+  console.log(mortgage)
+
   return (
     <Container
       fluid
@@ -92,8 +96,8 @@ function CompareProperty() {
                   <Form.Label>Property Price</Form.Label>
                   <Form.Control
                     type="Number"
-                    // value={price}
-                    // onChange={(e) => setPrice(e.target.value)}
+                     value={price}
+                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="col-5" controlId="inputRate">
