@@ -51,7 +51,7 @@ function MyHomes() {
             <div className="card-body">
               <p>City:{property.city}</p>
               <p>State:{property.state}</p>
-              <p>Property Price:${property.property_price}</p>
+              <p>Property Price:${property.property_price.toLocaleString("en-US")}</p>
               <p>Interest Rate:{property.interest_rate}%</p>
               <p>Down Payment: ${property.down_payment}</p>
               <p>
@@ -65,7 +65,7 @@ function MyHomes() {
                 Average Monthly Earnings: $
                 {property.avg_airbnb_rental.toFixed(2)}
               </p>
-              <p> ROI:{property.avg_airbnb_ROI.toFixed(2)}%</p>
+              <p> ROI:{property.avg_airbnb_ROI.toFixed(2)*100}%</p>
               <FontAwesomeIcon
                 className="icon"
                 icon={faTrashCan}

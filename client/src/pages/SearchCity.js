@@ -61,7 +61,7 @@ function SearchCity() {
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-10"
             >
-              <Form.Group className="mb-3" controlId="inputCity">
+              <Form.Group className="mb-3 label" controlId="inputCity">
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
@@ -74,7 +74,7 @@ function SearchCity() {
                 />
                 <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="inputState">
+              <Form.Group className="mb-3 label" controlId="inputState">
                 <Form.Label>State</Form.Label>
                 <Form.Control
                   type="text"

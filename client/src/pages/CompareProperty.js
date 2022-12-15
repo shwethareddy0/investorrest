@@ -75,13 +75,13 @@ function CompareProperty() {
     >
       <Row>
         <Col>
-          <Card style={{ border: "2px solid black" }}>
+          <Card  className="card" style={{ border: "2px solid black" }}>
             <Card.Header className="ir-card-header">Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
               className="col-11"
             >
-              <Form.Group className="mb-3" controlId="inputAddress">
+              <Form.Group className="mb-3 label" controlId="inputAddress">
                 <Form.Label>Street Address</Form.Label>
                 <Form.Control
                   type="text"
@@ -91,7 +91,7 @@ function CompareProperty() {
                 />
               </Form.Group>
               <Row>
-                <Form.Group className="col-6" controlId="cityInput">
+                <Form.Group className="col-6 label" controlId="cityInput">
                   <Form.Label>City</Form.Label>
                   <Form.Control
                     type="text"
@@ -101,7 +101,7 @@ function CompareProperty() {
                     onChange={(e) => setCity(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="col-6" controlId="stateInput">
+                <Form.Group className="col-6 label" controlId="stateInput">
                   <Form.Label>State</Form.Label>
                   <Form.Control
                     type="text"
@@ -113,7 +113,7 @@ function CompareProperty() {
                 </Form.Group>
               </Row>
               <Row>
-                <Form.Group className="col-7" controlId="inputPrice">
+                <Form.Group className="col-7 label" controlId="inputPrice">
                   <Form.Label>Property Price</Form.Label>
                   <Form.Control
                     type="Number"
@@ -121,7 +121,7 @@ function CompareProperty() {
                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="col-5" controlId="inputRate">
+                <Form.Group className="col-5 label" controlId="inputRate">
                   <Form.Label>Interest Rate</Form.Label>
                   <Form.Control
                     type="Number"
@@ -133,7 +133,7 @@ function CompareProperty() {
                 </Form.Group>
               </Row>
               <Row>
-              <Form.Group className="col-9" controlId="downPayment">
+              <Form.Group className="col-9 label" controlId="downPayment">
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
                   type="Number"
@@ -142,7 +142,7 @@ function CompareProperty() {
                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group className="col-6" controlId="Investment">
+              <Form.Group className="col-6 label" controlId="Investment">
                 <Form.Label>Additional Investment</Form.Label>
                 <Form.Control
                   type="Number"

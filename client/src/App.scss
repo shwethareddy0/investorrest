@@ -21,15 +21,10 @@
   font-size: 20px;
 }
 
-// .homepage {
+@mixin border($bc: 700) {
+  font-weight:$bc
+}
 
-// .homepageheader {
-//   background-color: #9295d1
-// }
-// }
-
-// .searchcity{
-//   .ir-card-header {
-//     background-color: #9295d1;
-//   } 
-// }
+.label:hover {
+  @include border
+}
