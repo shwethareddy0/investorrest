@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 
+
 // Home page of the app
 function Homepage() {
   return (
@@ -11,7 +12,7 @@ function Homepage() {
         <Col>
           <Card
             className="mb-3"
-            style={{ width: "17rem", border: "2px solid lightgrey" }}
+            style={{ width: "17rem", border: "2px solid black" }}
           >
             <Card.Header className="ir-card-header">
               Top 5 Most Popular Cities in the USA
@@ -31,7 +32,7 @@ function Homepage() {
         <Col>
           <Card
             className="mb-5"
-            style={{ width: "18rem", border: "2px solid lightgrey" }}
+            style={{ width: "18rem", border: "2px solid black" }}
           >
             <Card.Header className="ir-card-header">
               Top 5 Most Popular States in the USA
@@ -51,13 +52,13 @@ function Homepage() {
         <Col>
           <Card
             className="mb-3"
-            style={{ width: "24rem", border: "2px solid lightgrey" }}
+            style={{ width: "24rem", border: "2px solid black" }}
           >
             <Card.Header className="ir-card-header">
               Airbnb by the Numbers
             </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Total number of Airbnbs <p>5,600,000 listings</p></ListGroup.Item>
+              <ListGroup.Item>Total number of Airbnbs <h5>5,600,000 listings</h5></ListGroup.Item>
               <ListGroup.Item>Profitability over long term rental <p>STR's can make 3.5x more</p></ListGroup.Item>
               <ListGroup.Item>Year over year growth <p>32.56%</p></ListGroup.Item>
               <ListGroup.Item>Average Occupancy<p>58.9%</p></ListGroup.Item>
