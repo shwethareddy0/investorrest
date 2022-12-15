@@ -106,8 +106,8 @@ function CompareProperty() {
                     type="Number"
                     step="0.1"
                     format={"### %"}
-                    // value={rate}
-                    // onChange={(e) => setRate(e.target.value)}
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
                   />
                 </Form.Group>
               </Row>
@@ -115,8 +115,8 @@ function CompareProperty() {
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
                   type="Number"
-                  // value={payment}
-                  // onChange={(e) => setPayment(e.target.value)}
+                  value={payment}
+                  onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
               <Button
