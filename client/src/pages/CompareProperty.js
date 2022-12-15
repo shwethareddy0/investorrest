@@ -7,9 +7,9 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
-
-  
   const [price, setPrice] = useState();
+  const [address, setAddress] = useState();
+  const [mortgage, setMortgage] = useState();
   const [rate, setRate] = useState();
   const [payment, setPayment] = useState();
   const [state, setState] = useState("CA");
@@ -17,34 +17,41 @@ function CompareProperty() {
   const [propertyResults, setPropertyResults] = useState();
 
   const fetchPropertyDetails = async () => {
-  
     const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
-    
+
     try {
       const response = await axios.get(url);
       console.log(response);
       setPropertyResults(response.data.content);
+      // Mortgage evaluation
+      var interest = rate / 100 / 12;
+      var mortgage =
+        (price - payment) *
+        interest *
+        (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
+      setMortgage(mortgage);
+      console.log(mortgage);
+      console.log(interest);
     } catch (error) {
       console.log(error);
     }
   };
 
-
-  var interest = ((rate/100)/12)
-  var mortgage = (price - payment) * interest * ( Math.pow(1+interest, 360) / ( Math.pow(1+interest, 360) - 1 ) )
-console.log(mortgage)
-console.log(interest)
-
   function saveHome() {
     axios.post(
       "/api/homes/save",
       {
-        city: "Cupertino",
-        state: "CA",
-        occupancy: 50,
-        airbnb_properties: 500,
-        airbnb_rental: 4100,
-        avg_nightly_rate: 100,
+        city: city,
+        state: state,
+        property_price: price,
+        interest_rate: rate,
+        down_payment: payment,
+        street_address: address,
+        mortgage: mortgage,
+        avg_occupancy: propertyResults.avg_occupancy,
+        airbnb_rental: propertyResults.avg_airbnb_rental,
+        avg_nightly_price: propertyResults.avg_nightly_price,
+        avg_airbnb_ROI: propertyResults.avg_airbnb_ROI,
       },
       {
         headers: {
@@ -53,7 +60,6 @@ console.log(interest)
       }
     );
   }
-
 
   return (
     <Container

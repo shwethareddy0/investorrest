@@ -26,4 +26,19 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+  async deleteProperty(obj, res) {
+    const { user, body, params } = obj;
+    console.log(obj);
+    try {
+      const _user = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $pull: { savedProperties: { _id: params.id } } }
+      );
+
+      res.json(_user.savedProperties);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 };
