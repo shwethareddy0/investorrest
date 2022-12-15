@@ -4,6 +4,7 @@ import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import "../App.scss";
 
 function SearchCity() {
   const [state, setState] = useState();
@@ -40,11 +41,12 @@ function SearchCity() {
   return (
     <Container
       fluid
-      className="ml-3"
+      className="ml-3 searchcity"
       style={{
         display: "flex",
         height: "90vh",
       }}
+  
     >
       <Row>
         <Col>
