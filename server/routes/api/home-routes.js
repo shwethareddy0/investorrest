@@ -1,5 +1,8 @@
 const router = require("express").Router();
-const { saveProperty } = require("../../controllers/home-controllers");
+const {
+  saveProperty,
+  getSavedProperties,
+} = require("../../controllers/home-controllers");
 
 const { authMiddleware } = require("../../utils/auth");
 

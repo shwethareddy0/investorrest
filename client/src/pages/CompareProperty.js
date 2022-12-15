@@ -27,7 +27,7 @@ function CompareProperty() {
     axios.post(
       "/api/homes/save",
       {
-        city: "Berkeley",
+        city: "Cupertino",
         state: "CA",
         occupancy: 50,
         airbnb_properties: 500,
