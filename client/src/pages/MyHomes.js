@@ -4,6 +4,7 @@ import axios from "axios";
 import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import "../App.scss";
 
 function MyHomes() {
   async function getSavedProperties() {
