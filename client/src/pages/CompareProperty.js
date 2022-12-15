@@ -27,7 +27,7 @@ function CompareProperty() {
       // Mortgage evaluation
       // var investment = ((invest/12)+291);
       const interest = rate / 100 / 12;
-      const mortgage =
+      const mortgage = 
         (price - payment) *
         interest *
         (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
@@ -75,7 +75,7 @@ function CompareProperty() {
     >
       <Row>
         <Col>
-          <Card style={{ border: "2px solid lightgrey" }}>
+          <Card style={{ border: "2px solid black" }}>
             <Card.Header className="ir-card-header">Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
@@ -138,6 +138,7 @@ function CompareProperty() {
                 <Form.Control
                   type="Number"
                   value={payment}
+                  placeholder="If nothing enter 0"
                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
@@ -146,6 +147,7 @@ function CompareProperty() {
                 <Form.Control
                   type="Number"
                   value={invest}
+                  placeholder="If nothing enter 0"
                   onChange={(e) => setInvest(e.target.value)}
                 />
               </Form.Group>
@@ -169,7 +171,7 @@ function CompareProperty() {
           <Col>
             <Card
               className="mb-3"
-              style={{ width: "60rem", border: "2px solid lightgrey" }}
+              style={{ width: "45rem", border: "2px solid black" }}
             >
               <Card.Header className="comparison ir-card-header">
                 <h4>Comparison Chart</h4>
@@ -181,7 +183,7 @@ function CompareProperty() {
                   <h5 className="areaStat">
                     Average Occupency Rate:
                     </h5>
-                    <h4>
+                    <h4 className ="lor">
                     {propertyResults.avg_occupancy.toFixed(2)}%
                   </h4>
                   <h5 className="areaStat">
@@ -195,24 +197,28 @@ function CompareProperty() {
                     Average Monthly Earnings:
                     </h5>
                     <h4> $
-                    {propertyResults.avg_airbnb_rental.toFixed(2)}
+                    {(propertyResults.avg_airbnb_rental.toFixed(2))}
                   </h4>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
                   <br />
                   <h5 className="areaStat">Break Even Occupency Rate:</h5>
-                  <h4 className="abbStat">{((mortgage/(propertyResults.avg_nightly_price))/.3041).toFixed(2)}%</h4>
+                  <h4 className="abbStat beor">{((mortgage/(propertyResults.avg_nightly_price))/.3041).toFixed(2)}%</h4>
                   <h5 className="areaStat"> Break Even Nightly Rate:</h5>
-                  <h4 className="abbStat">${((mortgage)/(30.41*(propertyResults.avg_occupancy/100))).toFixed(2)}</h4>
+                  <h4 className="abbStat">${(((mortgage)/(30.41*(propertyResults.avg_occupancy/100))).toFixed(2))}</h4>
                   <h5 className="areaStat"> Potential Monthly Earnings:</h5>
                   <h4 className="abbStat">${((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2)}</h4>
                   <h5 className="areaStat"> Monthly ROI:</h5>
                   <h4 className="areaStat">
                     {" "}
-                    ROI: {((((((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2))-mortgage)/mortgage)*100).toFixed(2)}%
+                    {((((((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2))-mortgage)/mortgage)*100).toFixed(2)}%
                   </h4>
+                  </Col>
+                  <Col className="col-2">
+                  
                   <Button
+                  className="btn"
                     style={{ justifyContent: "center" }}
                     variant="primary"
                     type="submit"
@@ -222,11 +228,15 @@ function CompareProperty() {
                   </Button>
                 </Col>
               </Row>
+              {/* <Row> */}
               <Card.Body>
-                <Card.Link href="/myhomes">
+                <Card.Link 
+                href="/myhomes">
                   <h4>My Homes</h4>
                 </Card.Link>
               </Card.Body>
+              <p id="disclaimer"> Break even stats are based off given mortgage and local statistcs</p>
+              {/* </Row> */}
             </Card>
           </Col>
         )}
