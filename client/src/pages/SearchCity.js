@@ -10,7 +10,9 @@ import { Nav } from "react-bootstrap";
 function SearchCity() {
   const [state, setState] = useState();
   const [city, setCity] = useState();
+  //console.log(city, setCity);
   const [cityResults, setCityResults] = useState();
+  //console.log(cityResults, setCityResults);
   const fetchCityDetails = async () => {
     const url = `/cors?url=https://api.mashvisor.com/v1.1/client/city/investment/${state}/${city}`;
     try {
@@ -60,7 +62,7 @@ function SearchCity() {
                 <Form.Control
                   type="text"
                   placeholder="Required"
-                  id="inputState"
+                  // id="inputState"
                   required
                   value={state}
                   onChange={(e) => setState(e.target.value)}

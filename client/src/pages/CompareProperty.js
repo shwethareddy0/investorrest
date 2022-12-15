@@ -5,15 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
+// const api = axios.create({
+//   baseURL: `https://api.mashvisor.com/v1.1/client/`
+//  })
+
 function CompareProperty() {
   const [state, setState] = useState();
   const [city, setCity] = useState();
-  // const [price, setPrice] = useState();
-  // const [rate, setRate] = useState();
-  // const [payment, setPayment] = useState();
+  const [price, setPrice] = useState();
+  const [rate, setRate] = useState();
+  const [payment, setPayment] = useState();
   const [propertyResults, setPropertyResults] = useState();
   const fetchPropertyDetails = async () => {
-    const url = `https://api.mashvisor.com/v1.1/client/summary/listing/${state}/${city}`;
+    const url = `/cors?url=https://api.mashvisor.com/v1.1/client/summary/listing/${state}/${city}`;
     try {
       const response = await axios.get(url);
       setPropertyResults(response.data.content);
@@ -74,8 +78,8 @@ function CompareProperty() {
                   <Form.Label>Property Price</Form.Label>
                   <Form.Control
                     type="Number"
-                    // value={price}
-                    // onChange={(e) => setPrice(e.target.value)}
+                     value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="col-5" controlId="inputRate">
@@ -84,8 +88,8 @@ function CompareProperty() {
                     type="Number"
                     step="0.1"
                     format={"### %"}
-                    // value={rate}
-                    // onChange={(e) => setRate(e.target.value)}
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
                   />
                 </Form.Group>
               </Row>
@@ -93,8 +97,8 @@ function CompareProperty() {
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
                   type="Number"
-                  // value={payment}
-                  // onChange={(e) => setPayment(e.target.value)}
+                   value={payment}
+                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
               <Button 

@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const propertySchema = new Schema({
   city: {
@@ -27,6 +27,6 @@ const propertySchema = new Schema({
     required: true,
   },
 });
-const Property = model('Property', propertySchema)
 
-module.exports = Property;
+
+module.exports = propertySchema;
