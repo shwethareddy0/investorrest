@@ -142,7 +142,7 @@ function CompareProperty() {
                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group className="col-5" controlId="Investment">
+              <Form.Group className="col-6" controlId="Investment">
                 <Form.Label>Additional Investment</Form.Label>
                 <Form.Control
                   type="Number"
