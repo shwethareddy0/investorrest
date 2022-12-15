@@ -27,7 +27,7 @@ function AppNavbar() {
               {/* if user is logged in show saved homes and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/myhomes">
                     <h4>My Homes</h4>
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>
