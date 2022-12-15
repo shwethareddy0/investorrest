@@ -7,22 +7,21 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
-  const [state, setState] = useState();
-  const [city, setCity] = useState();
-  // const [price, setPrice] = useState();
-  // const [rate, setRate] = useState();
-  // const [payment, setPayment] = useState();
+  const [state, setState] = useState("CA");
+  const [city, setCity] = useState("Berkeley");
   const [propertyResults, setPropertyResults] = useState();
+
   const fetchPropertyDetails = async () => {
-    const url = `https://api.mashvisor.com/v1.1/client/summary/listing/${state}/${city}`;
+    const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
     try {
       const response = await axios.get(url);
-      setPropertyResults(response.data.content);
       console.log(response);
+      setPropertyResults(response.data.content);
     } catch (error) {
       console.log(error);
     }
   };
+
   function saveHome() {
     axios.post(
       "/api/homes/save",
@@ -130,17 +129,28 @@ function CompareProperty() {
 
         {propertyResults && (
           <Col>
-            <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
+            <Card
+              className="mb-3"
+              style={{ width: "46rem", border: "2px solid lightgrey" }}
+            >
               <Card.Header className="comparison">Comparison Chart</Card.Header>
               <Row>
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
                   <h4 className="areaStat"> Average Occupency Rate:</h4>
-                  <h5 className="abbStat">Occupency Rate</h5>
+                  <h5 className="abbStat">
+                    Occupency Rate: {propertyResults.avg_occupancy.toFixed(2)}%
+                  </h5>
                   <h4 className="areaStat"> Average Nightly Rate:</h4>
-                  <h5 className="abbStat">Nightly Rate</h5>
+                  <h5 className="abbStat">
+                    Nightly Rate: {propertyResults.avg_nightly_price.toFixed(2)}
+                    $
+                  </h5>
                   <h4 className="areaStat"> Average Monthly Earnings:</h4>
-                  <h5 className="abbStat">Monthly Earnings</h5>
+                  <h5 className="abbStat">
+                    Monthly Earnings:{" "}
+                    {propertyResults.avg_airbnb_rental.toFixed(2)}$
+                  </h5>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
@@ -151,7 +161,9 @@ function CompareProperty() {
                   <h4 className="areaStat"> Potential Monthly Earnings:</h4>
                   <h5 className="abbStat">Monthly Earnings</h5>
                   <h4 className="areaStat"> ROI:</h4>
-                  <h5 className="abbStat">ROI%</h5>
+                  <h5 className="abbStat">
+                    ROI%: {propertyResults.avg_airbnb_ROI.toFixed(2)}$
+                  </h5>
                   <Button
                     className="col-11/12"
                     style={{ justifyContent: "center" }}
