@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.scss";
-import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
+import { Col, Card, Form, Row, Container, Button, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -27,7 +28,7 @@ function CompareProperty() {
       // Mortgage evaluation
       // var investment = ((invest/12)+291);
       const interest = rate / 100 / 12;
-      const mortgage = 
+      const mortgage =
         (price - payment) *
         interest *
         (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
@@ -133,27 +134,28 @@ function CompareProperty() {
                 </Form.Group>
               </Row>
               <Row>
-              <Form.Group className="col-9" controlId="downPayment">
-                <Form.Label>Down Payment</Form.Label>
-                <Form.Control
-                  type="Number"
-                  value={payment}
-                  placeholder="If nothing enter 0"
-                  onChange={(e) => setPayment(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="col-5" controlId="Investment">
-                <Form.Label>Additional Investment</Form.Label>
-                <Form.Control
-                  type="Number"
-                  value={invest}
-                  placeholder="If nothing enter 0"
-                  onChange={(e) => setInvest(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group className="col-9" controlId="downPayment">
+                  <Form.Label>Down Payment</Form.Label>
+                  <Form.Control
+                    type="Number"
+                    value={payment}
+                    placeholder="If nothing enter 0"
+                    onChange={(e) => setPayment(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="col-5" controlId="Investment">
+                  <Form.Label>Additional Investment</Form.Label>
+                  <Form.Control
+                    type="Number"
+                    value={invest}
+                    placeholder="If nothing enter 0"
+                    onChange={(e) => setInvest(e.target.value)}
+                  />
+                </Form.Group>
               </Row>
               <Row>
-              <p>Monthly Cost:</p><h5>${(mortgage + ((invest/12)+291)).toFixed(2)}</h5>
+                <p>Monthly Cost:</p>
+                <h5>${(mortgage + (invest / 12 + 291)).toFixed(2)}</h5>
               </Row>
               <Button
                 style={{ justifyContent: "center" }}
@@ -180,45 +182,63 @@ function CompareProperty() {
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
                   <br />
-                  <h5 className="areaStat">
-                    Average Occupency Rate:
-                    </h5>
-                    <h4 className ="lor">
+                  <h5 className="areaStat">Average Occupency Rate:</h5>
+                  <h4 className="lor">
                     {propertyResults.avg_occupancy.toFixed(2)}%
                   </h4>
-                  <h5 className="areaStat">
-                    Average Nightly Rate:
-                    </h5>
-                    <h4>
-                     $
-                    {propertyResults.avg_nightly_price.toFixed(2)}
-                  </h4>
-                  <h5 className="areaStat">
-                    Average Monthly Earnings:
-                    </h5>
-                    <h4> $
-                    {(propertyResults.avg_airbnb_rental.toFixed(2))}
-                  </h4>
+                  <h5 className="areaStat">Average Nightly Rate:</h5>
+                  <h4>${propertyResults.avg_nightly_price.toFixed(2)}</h4>
+                  <h5 className="areaStat">Average Monthly Earnings:</h5>
+                  <h4> ${propertyResults.avg_airbnb_rental.toFixed(2)}</h4>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
                   <br />
                   <h5 className="areaStat">Break Even Occupency Rate:</h5>
-                  <h4 className="abbStat beor">{((mortgage/(propertyResults.avg_nightly_price))/.3041).toFixed(2)}%</h4>
+                  <h4 className="abbStat beor">
+                    {(
+                      mortgage /
+                      propertyResults.avg_nightly_price /
+                      0.3041
+                    ).toFixed(2)}
+                    %
+                  </h4>
                   <h5 className="areaStat"> Break Even Nightly Rate:</h5>
-                  <h4 className="abbStat">${(((mortgage)/(30.41*(propertyResults.avg_occupancy/100))).toFixed(2))}</h4>
+                  <h4 className="abbStat">
+                    $
+                    {(
+                      mortgage /
+                      (30.41 * (propertyResults.avg_occupancy / 100))
+                    ).toFixed(2)}
+                  </h4>
                   <h5 className="areaStat"> Potential Monthly Earnings:</h5>
-                  <h4 className="abbStat">${((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2)}</h4>
+                  <h4 className="abbStat">
+                    $
+                    {(
+                      30.41 *
+                      (propertyResults.avg_occupancy / 100) *
+                      propertyResults.avg_nightly_price
+                    ).toFixed(2)}
+                  </h4>
                   <h5 className="areaStat"> Monthly ROI:</h5>
                   <h4 className="areaStat">
                     {" "}
-                    {((((((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2))-mortgage)/mortgage)*100).toFixed(2)}%
+                    {(
+                      (((
+                        30.41 *
+                        (propertyResults.avg_occupancy / 100) *
+                        propertyResults.avg_nightly_price
+                      ).toFixed(2) -
+                        mortgage) /
+                        mortgage) *
+                      100
+                    ).toFixed(2)}
+                    %
                   </h4>
-                  </Col>
-                  <Col className="col-2">
-                  
+                </Col>
+                <Col className="col-2">
                   <Button
-                  className="btn"
+                    className="btn"
                     style={{ justifyContent: "center" }}
                     variant="primary"
                     type="submit"
@@ -228,15 +248,16 @@ function CompareProperty() {
                   </Button>
                 </Col>
               </Row>
-              {/* <Row> */}
               <Card.Body>
-                <Card.Link 
-                href="/myhomes">
+                <Nav.Link activeclassname="active" as={Link} to="/myhomes">
                   <h4>My Homes</h4>
-                </Card.Link>
+                </Nav.Link>
               </Card.Body>
-              <p id="disclaimer"> Break even stats are based off given mortgage and local statistcs</p>
-              {/* </Row> */}
+              <p id="disclaimer">
+                {" "}
+                Break even stats are based off given mortgage and local
+                statistcs
+              </p>
             </Card>
           </Col>
         )}
