@@ -17,11 +17,11 @@ function Homepage() {
               Top 5 Cities in the USA
             </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Fontana-on-Geneva Lake</ListGroup.Item>
-              <ListGroup.Item>White Sulphur Springs</ListGroup.Item>
-              <ListGroup.Item>New Jersey</ListGroup.Item>
-              <ListGroup.Item>Portland</ListGroup.Item>
-              <ListGroup.Item>Boston</ListGroup.Item>
+              <ListGroup.Item>Phoenix, AZ</ListGroup.Item>
+              <ListGroup.Item>Lake Tahoe, CA</ListGroup.Item>
+              <ListGroup.Item>Charleston, SC</ListGroup.Item>
+              <ListGroup.Item>Savannah, GA</ListGroup.Item>
+              <ListGroup.Item>Myrtle Beach, CA</ListGroup.Item>
             </ListGroup>
             <Card.Body>
               <Nav.Link activeclassname="active" as={Link} to="/search">
@@ -39,11 +39,14 @@ function Homepage() {
               Top 5 States in the USA
             </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Massachusetts</ListGroup.Item>
+              <ListGroup.Item>Arizona</ListGroup.Item>
               <ListGroup.Item>California</ListGroup.Item>
               <ListGroup.Item>Florida</ListGroup.Item>
-              <ListGroup.Item>North Carolina</ListGroup.Item>
+              <ListGroup.Item>Hawaii</ListGroup.Item>
               <ListGroup.Item>South Carolina</ListGroup.Item>
+              <Nav.Link activeclassname="active" as={Link} to="/search">
+                Search
+              </Nav.Link>
             </ListGroup>
             <Card.Body>
               <Nav.Link activeclassname="active" as={Link} to="/search">
