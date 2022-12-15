@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const {
-  login,
-  createUser,
   saveProperty,
-} = require("../../controllers/user-controllers");
+  getSavedProperties,
+} = require("../../controllers/home-controllers");
 
 const { authMiddleware } = require("../../utils/auth");
-//api/users/login
-router.route("/save").post(login);
+
+router.route("/save").post(authMiddleware, saveProperty);
+router.route("/").get(authMiddleware, getSavedProperties);
 
 module.exports = router;
