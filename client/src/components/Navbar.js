@@ -15,9 +15,11 @@ function AppNavbar() {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
-              <Nav.Link activeclassname="active" as={Link} to="/compare">
-                <h4>Compare Property</h4>
-              </Nav.Link>
+              {Auth.loggedIn() ? (
+                <Nav.Link activeclassname="active" as={Link} to="/compare">
+                  <h4>Compare Property</h4>
+                </Nav.Link>
+              ) : null}
               <Nav.Link activeclassname="active" as={Link} to="/search">
                 <h4>Search City</h4>
               </Nav.Link>
@@ -27,7 +29,7 @@ function AppNavbar() {
               {/* if user is logged in show saved homes and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/myhomes">
                     <h4>My Homes</h4>
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>
