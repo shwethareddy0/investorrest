@@ -123,33 +123,39 @@ function SearchCity() {
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Nighlty Rate: <h4>$
-                    {(cityResults.airbnb_rental / 30.41).toFixed(2)}</h4>
+                    Average Nighlty Rate:{" "}
+                    <h4>${(cityResults.airbnb_rental / 30.41).toFixed(2)}</h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Monthly Earning: <h4>${cityResults.airbnb_rental.toLocaleString("en-US")}</h4>
+                    Average Monthly Earning:{" "}
+                    <h4>
+                      ${cityResults.airbnb_rental.toLocaleString("en-US")}
+                    </h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Property Price: <h4>${cityResults.median_price.toLocaleString("en-US")}</h4>
+                    Average Property Price:{" "}
+                    <h4>${cityResults.median_price.toLocaleString("en-US")}</h4>
                   </h5>
                 </div>
               </div>
             </Card>
             <br />
+            <br />
+            <br />
             <p>
-              To know more about the property details and to calculate the
-              mortgage, please <a href="/login">login</a> or <a href="/singup">signup</a>
-              {/* <Row>
-              <Nav.Link activeclassname="active" as={Link} to="/login">
-                login
-              </Nav.Link>
-              or
-              <Nav.Link activeclassname="active" as={Link} to="/signup">
-                signup
-              </Nav.Link>
-              </Row> */}
+              <Row>
+                To know more about the property details and to calculate the
+                mortgage, please{" "}
+                <Nav.Link activeclassname="active" as={Link} to="/login">
+                  Login
+                </Nav.Link>
+                or
+                <Nav.Link activeclassname="active" as={Link} to="/signup">
+                  Signup
+                </Nav.Link>
+              </Row>
             </p>
           </Col>
         )}
