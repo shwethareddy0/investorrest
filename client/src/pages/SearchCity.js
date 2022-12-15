@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeart } from "@fortawesome/free-solid-svg-icons";
-// import { faUnderline } from "@fortawesome/free-solid-svg-icons";
 
 function SearchCity() {
   const [state, setState] = useState();
@@ -26,24 +23,19 @@ function SearchCity() {
   //GeoLocation
   const [geoResults, setGeoResults] = useState();
   const getLocation = () => {
-    
     fetch(`https://api.api-ninjas.com/v1/geocoding?city=${city}`, {
       headers: {
         "X-Api-Key": "h3rta61reyR1vGE54NdvUg==KxJvxJiNvhkx8xRr",
       },
     })
-    .then((response) => response.json()    )
-    .then((data) => { setGeoResults([data[0].latitude, data[0].longitude])
-      position = [data[0].latitude, data[0].longitude]
-      console.log(position)
-      
-    });
-    
-  }
+      .then((response) => response.json())
+      .then((data) => {
+        setGeoResults([data[0].latitude, data[0].longitude]);
+        position = [data[0].latitude, data[0].longitude];
+        console.log(position);
+      });
+  };
   var position = [];
-  
-  //Map
-
 
   return (
     <Container
@@ -60,7 +52,7 @@ function SearchCity() {
             className="mb-3"
             style={{ width: "20rem", border: "2px solid lightgrey" }}
           >
-            <Card.Header>
+            <Card.Header className="ir-card-header">
               <strong>Search an Area</strong>
             </Card.Header>
             <Form
@@ -74,8 +66,9 @@ function SearchCity() {
                   placeholder="Required"
                   input="inputCity"
                   value={city}
-                  onChange={(e) => {setCity(e.target.value); }}
-                  
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
                 />
                 <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
@@ -93,7 +86,7 @@ function SearchCity() {
                 style={{ justifyContent: "center" }}
                 variant="primary"
                 disabled={!city || !state}
-                onClick={event => {
+                onClick={(event) => {
                   fetchCityDetails();
                   getLocation();
                 }}
@@ -111,7 +104,7 @@ function SearchCity() {
               style={{ width: "30rem", border: "2px solid lightgrey" }}
             >
               <div className="card">
-                <Card.Header>
+                <Card.Header className="ir-card-header">
                   <h4>
                     {" "}
                     <strong>Area Stats</strong>
@@ -157,13 +150,23 @@ function SearchCity() {
               </Nav.Link>
             </p>
           </Col>
-
         )}
         {geoResults && (
           <Col>
-            <Card className="mb-3"
-              style={{ width: "30rem", height: "30rem", border: "2px solid lightgrey" }}>
-              <MapContainer style={{ height: "30rem" }} center={geoResults} zoom={13} scrollWheelZoom={false}>
+            <Card
+              className="mb-3"
+              style={{
+                width: "30rem",
+                height: "30rem",
+                border: "2px solid lightgrey",
+              }}
+            >
+              <MapContainer
+                style={{ height: "30rem" }}
+                center={geoResults}
+                zoom={13}
+                scrollWheelZoom={false}
+              >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
