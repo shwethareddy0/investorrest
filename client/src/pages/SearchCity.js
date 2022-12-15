@@ -50,7 +50,7 @@ function SearchCity() {
         <Col>
           <Card
             className="mb-3"
-            style={{ width: "20rem", border: "2px solid lightgrey" }}
+            style={{ width: "20rem", border: "2px solid black" }}
           >
             <Card.Header className="ir-card-header">
               <strong>Search an Area</strong>
@@ -101,7 +101,7 @@ function SearchCity() {
           <Col>
             <Card
               className="mb-3"
-              style={{ width: "30rem", border: "2px solid lightgrey" }}
+              style={{ width: "30rem", border: "2px solid black" }}
             >
               <div className="card">
                 <Card.Header className="ir-card-header">
@@ -113,41 +113,41 @@ function SearchCity() {
                 <div className="card-body">
                   <h5 className="areaStat">
                     {" "}
-                    Average Occupency Rate: {cityResults.occupancy}%
+                    Average Occupency Rate: <h4>{cityResults.occupancy}%</h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Number of Airbnbs: {cityResults.airbnb_properties}
+                    Number of Airbnbs: <h4>{cityResults.airbnb_properties}</h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Nighlty Rate: $
-                    {(cityResults.airbnb_rental / 30.41).toFixed(2)}
+                    Average Nighlty Rate: <h4>$
+                    {(cityResults.airbnb_rental / 30.41).toFixed(2)}</h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Monthly Earning: ${cityResults.airbnb_rental}
+                    Average Monthly Earning: <h4>${cityResults.airbnb_rental.toLocaleString("en-US")}</h4>
                   </h5>
                   <h5 className="areaStat">
                     {" "}
-                    Average Property Price: ${cityResults.median_price}
+                    Average Property Price: <h4>${cityResults.median_price.toLocaleString("en-US")}</h4>
                   </h5>
                 </div>
               </div>
             </Card>
             <br />
-            <br />
-            <br />
             <p>
               To know more about the property details and to calculate the
-              mortgage, please{" "}
+              mortgage, please <a href="/login">login</a> or <a href="/singup">signup</a>
+              {/* <Row>
               <Nav.Link activeclassname="active" as={Link} to="/login">
                 login
-              </Nav.Link>{" "}
-              or{" "}
+              </Nav.Link>
+              or
               <Nav.Link activeclassname="active" as={Link} to="/signup">
                 signup
               </Nav.Link>
+              </Row> */}
             </p>
           </Col>
         )}
@@ -158,7 +158,7 @@ function SearchCity() {
               style={{
                 width: "30rem",
                 height: "30rem",
-                border: "2px solid lightgrey",
+                border: "2px solid black",
               }}
             >
               <MapContainer

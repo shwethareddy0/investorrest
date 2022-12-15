@@ -40,7 +40,7 @@ function MyHomes() {
       {savedProperties.map((property) => (
         <Card
           className="mb-3"
-          style={{ width: "30rem", border: "2px solid lightgrey" }}
+          style={{ width: "30rem", border: "2px solid black" }}
           key={property._id}
         >
           <Card.Header className="ir-card-header">
