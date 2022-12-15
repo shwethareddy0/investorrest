@@ -8,12 +8,12 @@ import axios from "axios";
 function CompareProperty() {
   const [state, setState] = useState();
   const [city, setCity] = useState();
-  const [price, setPrice] = useState();
-  const [rate, setRate] = useState();
-  const [payment, setPayment] = useState();
+  // const [price, setPrice] = useState();
+  // const [rate, setRate] = useState();
+  // const [payment, setPayment] = useState();
   const [propertyResults, setPropertyResults] = useState();
   const fetchPropertyDetails = async () => {
-    const url = `/cors?url=https://api.mashvisor.com/v1.1/client/city/investment//${state}/${city}`;
+    const url = `https://api.mashvisor.com/v1.1/client/summary/listing/${state}/${city}`;
     try {
       const response = await axios.get(url);
       setPropertyResults(response.data.content);
@@ -22,9 +22,10 @@ function CompareProperty() {
       console.log(error);
     }
   };
-  // const interest = ({rate}/100)/12
-  // var mortgage = ({price}-${payment})[interest(1+interest)^360]/[(1+interest)^360-1
 
+  // var interest = (rate/100)/12
+  // var mortgage = ({price}-{payment})[interest(1+interest)^360]/[(1+interest)^360-1]
+// console.log(mortgage)
   return (
     <Container
       fluid
@@ -50,15 +51,21 @@ function CompareProperty() {
               <Row>
                 <Form.Group className="col-6" controlId="cityInput">
                   <Form.Label>City</Form.Label>
-                  <Form.Control type="text" placeholder="Required" required />
+                  <Form.Control 
+                  type="text" 
+                  placeholder="Required" 
+                  required
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="col-6" controlId="stateInput">
                   <Form.Label>State</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="CA"
-                    id="inputState"
+                    placeholder="Required"
                     required
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
                   />
                 </Form.Group>
               </Row>
@@ -67,19 +74,18 @@ function CompareProperty() {
                   <Form.Label>Property Price</Form.Label>
                   <Form.Control
                     type="Number"
-                    placeholder="Required"
-                    id="propertyPrice"
-                    required
+                    // value={price}
+                    // onChange={(e) => setPrice(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="col-5" controlId="inputRate">
                   <Form.Label>Interest Rate</Form.Label>
                   <Form.Control
                     type="Number"
+                    step="0.1"
                     format={"### %"}
-                    placeholder="Required"
-                    id="interest Rate"
-                    required
+                    // value={rate}
+                    // onChange={(e) => setRate(e.target.value)}
                   />
                 </Form.Group>
               </Row>
@@ -87,18 +93,22 @@ function CompareProperty() {
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
                   type="Number"
-                  placeholder="If none enter 0"
-                  id="downPayment"
-                  required
+                  // value={payment}
+                  // onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button 
+              style={{ justifyContent: "center" }}
+              variant="primary" 
+              disabled={!city||!state}
+              onClick={fetchPropertyDetails}>
                 Submit
               </Button>
             </Form>
           </Card>
         </Col>
 
+        {propertyResults && (
         <Col>
           <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
             <Card.Header className="comparison">Comparison Chart</Card.Header>
@@ -137,6 +147,7 @@ function CompareProperty() {
             </Card.Body>
           </Card>
         </Col>
+        )}
       </Row>
     </Container>
   );
