@@ -7,6 +7,7 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
+  const [invest, setInvest] = useState();
   const [price, setPrice] = useState();
   const [address, setAddress] = useState();
   const [mortgage, setMortgage] = useState();
@@ -24,8 +25,9 @@ function CompareProperty() {
       console.log(response);
       setPropertyResults(response.data.content);
       // Mortgage evaluation
-      var interest = rate / 100 / 12;
-      var mortgage =
+      // var investment = ((invest/12)+291);
+      const interest = rate / 100 / 12;
+      const mortgage =
         (price - payment) *
         interest *
         (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
@@ -130,6 +132,7 @@ function CompareProperty() {
                   />
                 </Form.Group>
               </Row>
+              <Row>
               <Form.Group className="col-9" controlId="downPayment">
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
@@ -138,6 +141,18 @@ function CompareProperty() {
                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
+              <Form.Group className="col-5" controlId="Investment">
+                <Form.Label>Additional Investment</Form.Label>
+                <Form.Control
+                  type="Number"
+                  value={invest}
+                  onChange={(e) => setInvest(e.target.value)}
+                />
+              </Form.Group>
+              </Row>
+              <Row>
+              <p>Monthly Cost:</p><h5>${(mortgage + ((invest/12)+291)).toFixed(2)}</h5>
+              </Row>
               <Button
                 style={{ justifyContent: "center" }}
                 variant="primary"
@@ -163,37 +178,41 @@ function CompareProperty() {
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
                   <br />
-                  <h4 className="areaStat">
-                    {" "}
-                    Average Occupency Rate:{" "}
+                  <h5 className="areaStat">
+                    Average Occupency Rate:
+                    </h5>
+                    <h4>
                     {propertyResults.avg_occupancy.toFixed(2)}%
                   </h4>
-                  <h4 className="areaStat">
-                    {" "}
-                    Average Nightly Rate: $
+                  <h5 className="areaStat">
+                    Average Nightly Rate:
+                    </h5>
+                    <h4>
+                     $
                     {propertyResults.avg_nightly_price.toFixed(2)}
                   </h4>
-                  <h4 className="areaStat">
-                    {" "}
-                    Average Monthly Earnings: $
+                  <h5 className="areaStat">
+                    Average Monthly Earnings:
+                    </h5>
+                    <h4> $
                     {propertyResults.avg_airbnb_rental.toFixed(2)}
                   </h4>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
                   <br />
-                  <h4 className="areaStat">Break Even Occupency Rate:</h4>
-                  <h5 className="abbStat">Occupency Rate</h5>
-                  <h4 className="areaStat"> Break Even Nightly Rate:</h4>
-                  <h5 className="abbStat">Nightly Rate</h5>
-                  <h4 className="areaStat"> Potential Monthly Earnings:</h4>
-                  <h5 className="abbStat">Monthly Earnings</h5>
-                  <h5 className="areaStat">
+                  <h5 className="areaStat">Break Even Occupency Rate:</h5>
+                  <h4 className="abbStat">{((mortgage/(propertyResults.avg_nightly_price))/.3041).toFixed(2)}%</h4>
+                  <h5 className="areaStat"> Break Even Nightly Rate:</h5>
+                  <h4 className="abbStat">${((mortgage)/(30.41*(propertyResults.avg_occupancy/100))).toFixed(2)}</h4>
+                  <h5 className="areaStat"> Potential Monthly Earnings:</h5>
+                  <h4 className="abbStat">${((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2)}</h4>
+                  <h5 className="areaStat"> Monthly ROI:</h5>
+                  <h4 className="areaStat">
                     {" "}
-                    ROI: {propertyResults.avg_airbnb_ROI.toFixed(2)}%
-                  </h5>
+                    ROI: {((((((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2))-mortgage)/mortgage)*100).toFixed(2)}%
+                  </h4>
                   <Button
-                    className="col-11/12"
                     style={{ justifyContent: "center" }}
                     variant="primary"
                     type="submit"
