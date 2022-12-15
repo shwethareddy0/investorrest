@@ -50,9 +50,9 @@ function MyHomes() {
             <div className="card-body">
               <p>City:{property.city}</p>
               <p>State:{property.state}</p>
-              <p>Property Price:${property.price}</p>
-              <p>Interest Rate:{property.rate}%</p>
-              <p>Down Payment: ${property.payment}</p>
+              <p>Property Price:${property.property_price}</p>
+              <p>Interest Rate:{property.interest_rate}%</p>
+              <p>Down Payment: ${property.down_payment}</p>
               <p> Average Occupency Rate: {property.avg_occupancy}</p>
               <p>Average Nightly Rate:${property.avg_nightly_price}</p>
               <p>Average Monthly Earnings: ${property.avg_airbnb_rental}</p>
