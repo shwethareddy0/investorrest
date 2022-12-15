@@ -4,6 +4,7 @@ import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Auth from "../utils/auth";
 
 function CompareProperty() {
   const [state, setState] = useState();
@@ -22,10 +23,27 @@ function CompareProperty() {
       console.log(error);
     }
   };
-
+  function saveHome() {
+    axios.post(
+      "/api/homes/save",
+      {
+        city: "Berkeley",
+        state: "CA",
+        occupancy: 50,
+        airbnb_properties: 500,
+        airbnb_rental: 4100,
+        avg_nightly_rate: 100,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${Auth.getToken()}`,
+        },
+      }
+    );
+  }
   // var interest = (rate/100)/12
   // var mortgage = ({price}-{payment})[interest(1+interest)^360]/[(1+interest)^360-1]
-// console.log(mortgage)
+  // console.log(mortgage)
   return (
     <Container
       fluid
@@ -51,12 +69,13 @@ function CompareProperty() {
               <Row>
                 <Form.Group className="col-6" controlId="cityInput">
                   <Form.Label>City</Form.Label>
-                  <Form.Control 
-                  type="text" 
-                  placeholder="Required" 
-                  required
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Required"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="col-6" controlId="stateInput">
                   <Form.Label>State</Form.Label>
@@ -97,11 +116,12 @@ function CompareProperty() {
                   // onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
-              <Button 
-              style={{ justifyContent: "center" }}
-              variant="primary" 
-              disabled={!city||!state}
-              onClick={fetchPropertyDetails}>
+              <Button
+                style={{ justifyContent: "center" }}
+                variant="primary"
+                disabled={!city || !state}
+                onClick={saveHome}
+              >
                 Submit
               </Button>
             </Form>
@@ -109,44 +129,45 @@ function CompareProperty() {
         </Col>
 
         {propertyResults && (
-        <Col>
-          <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
-            <Card.Header className="comparison">Comparison Chart</Card.Header>
-            <Row>
-              <Col style={{ margin: "5px" }}>
-                <h3 className="card-title">Area Stats</h3>
-                <h4 className="areaStat"> Average Occupency Rate:</h4>
-                <h5 className="abbStat">Occupency Rate</h5>
-                <h4 className="areaStat"> Average Nightly Rate:</h4>
-                <h5 className="abbStat">Nightly Rate</h5>
-                <h4 className="areaStat"> Average Monthly Earnings:</h4>
-                <h5 className="abbStat">Monthly Earnings</h5>
-              </Col>
-              <Col>
-                <h3 className="card-title">Property Stats</h3>
-                <h4 className="areaStat">Break Even Occupency Rate:</h4>
-                <h5 className="abbStat">Occupency Rate</h5>
-                <h4 className="areaStat"> Break Even Nightly Rate:</h4>
-                <h5 className="abbStat">Nightly Rate</h5>
-                <h4 className="areaStat"> Potential Monthly Earnings:</h4>
-                <h5 className="abbStat">Monthly Earnings</h5>
-                <h4 className="areaStat"> ROI:</h4>
-                <h5 className="abbStat">ROI%</h5>
-                <Button
-                  className="col-11/12"
-                  style={{ justifyContent: "center" }}
-                  variant="primary"
-                  type="submit"
-                >
-                  <FontAwesomeIcon className="icon" icon={faHeart} />
-                </Button>
-              </Col>
-            </Row>
-            <Card.Body>
-              <Card.Link href="/myhomes">My Homes</Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
+          <Col>
+            <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
+              <Card.Header className="comparison">Comparison Chart</Card.Header>
+              <Row>
+                <Col style={{ margin: "5px" }}>
+                  <h3 className="card-title">Area Stats</h3>
+                  <h4 className="areaStat"> Average Occupency Rate:</h4>
+                  <h5 className="abbStat">Occupency Rate</h5>
+                  <h4 className="areaStat"> Average Nightly Rate:</h4>
+                  <h5 className="abbStat">Nightly Rate</h5>
+                  <h4 className="areaStat"> Average Monthly Earnings:</h4>
+                  <h5 className="abbStat">Monthly Earnings</h5>
+                </Col>
+                <Col>
+                  <h3 className="card-title">Property Stats</h3>
+                  <h4 className="areaStat">Break Even Occupency Rate:</h4>
+                  <h5 className="abbStat">Occupency Rate</h5>
+                  <h4 className="areaStat"> Break Even Nightly Rate:</h4>
+                  <h5 className="abbStat">Nightly Rate</h5>
+                  <h4 className="areaStat"> Potential Monthly Earnings:</h4>
+                  <h5 className="abbStat">Monthly Earnings</h5>
+                  <h4 className="areaStat"> ROI:</h4>
+                  <h5 className="abbStat">ROI%</h5>
+                  <Button
+                    className="col-11/12"
+                    style={{ justifyContent: "center" }}
+                    variant="primary"
+                    type="submit"
+                    onClick={saveHome}
+                  >
+                    <FontAwesomeIcon className="icon" icon={faHeart} />
+                  </Button>
+                </Col>
+              </Row>
+              <Card.Body>
+                <Card.Link href="/myhomes">My Homes</Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
         )}
       </Row>
     </Container>
