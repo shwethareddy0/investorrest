@@ -4,29 +4,56 @@ import { Col, Card, Form, Row, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Auth from "../utils/auth";
 
 function CompareProperty() {
-  const [state, setState] = useState();
-  const [city, setCity] = useState();
+
+  
   const [price, setPrice] = useState();
   const [rate, setRate] = useState();
   const [payment, setPayment] = useState();
+  const [state, setState] = useState("CA");
+  const [city, setCity] = useState("Berkeley");
   const [propertyResults, setPropertyResults] = useState();
+
   const fetchPropertyDetails = async () => {
-    const url = `/cors?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
+  
+    const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
+    
     try {
       const response = await axios.get(url);
-      setPropertyResults(response.data.content);
       console.log(response);
+      setPropertyResults(response.data.content);
     } catch (error) {
       console.log(error);
     }
   };
 
+
   var interest = ((rate/100)/12)
   var mortgage = (price - payment) * interest * ( Math.pow(1+interest, 360) / ( Math.pow(1+interest, 360) - 1 ) )
 console.log(mortgage)
 console.log(interest)
+
+  function saveHome() {
+    axios.post(
+      "/api/homes/save",
+      {
+        city: "Cupertino",
+        state: "CA",
+        occupancy: 50,
+        airbnb_properties: 500,
+        airbnb_rental: 4100,
+        avg_nightly_rate: 100,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${Auth.getToken()}`,
+        },
+      }
+    );
+  }
+
 
   return (
     <Container
@@ -53,12 +80,13 @@ console.log(interest)
               <Row>
                 <Form.Group className="col-6" controlId="cityInput">
                   <Form.Label>City</Form.Label>
-                  <Form.Control 
-                  type="text" 
-                  placeholder="Required" 
-                  required
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Required"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="col-6" controlId="stateInput">
                   <Form.Label>State</Form.Label>
@@ -99,11 +127,12 @@ console.log(interest)
                   onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
-              <Button 
-              style={{ justifyContent: "center" }}
-              variant="primary" 
-              disabled={!city||!state}
-              onClick={fetchPropertyDetails}>
+              <Button
+                style={{ justifyContent: "center" }}
+                variant="primary"
+                disabled={!city || !state}
+                onClick={fetchPropertyDetails}
+              >
                 Submit
               </Button>
             </Form>
@@ -111,44 +140,58 @@ console.log(interest)
         </Col>
 
         {propertyResults && (
-        <Col>
-          <Card style={{ width: "46rem", border: "2px solid lightgrey" }}>
-            <Card.Header className="comparison">Comparison Chart</Card.Header>
-            <Row>
-              <Col style={{ margin: "5px" }}>
-                <h3 className="card-title">Area Stats</h3>
-                <h4 className="areaStat"> Average Occupency Rate:</h4>
-                <h5 className="abbStat">Occupency Rate</h5>
-                <h4 className="areaStat"> Average Nightly Rate:</h4>
-                <h5 className="abbStat">Nightly Rate</h5>
-                <h4 className="areaStat"> Average Monthly Earnings:</h4>
-                <h5 className="abbStat">Monthly Earnings</h5>
-              </Col>
-              <Col>
-                <h3 className="card-title">Property Stats</h3>
-                <h4 className="areaStat">Break Even Occupency Rate:</h4>
-                <h5 className="abbStat">Occupency Rate</h5>
-                <h4 className="areaStat"> Break Even Nightly Rate:</h4>
-                <h5 className="abbStat">Nightly Rate</h5>
-                <h4 className="areaStat"> Potential Monthly Earnings:</h4>
-                <h5 className="abbStat">Monthly Earnings</h5>
-                <h4 className="areaStat"> ROI:</h4>
-                <h5 className="abbStat">ROI%</h5>
-                <Button
-                  className="col-11/12"
-                  style={{ justifyContent: "center" }}
-                  variant="primary"
-                  type="submit"
-                >
-                  <FontAwesomeIcon className="icon" icon={faHeart} />
-                </Button>
-              </Col>
-            </Row>
-            <Card.Body>
-              <Card.Link href="/myhomes">My Homes</Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
+          <Col>
+            <Card
+              className="mb-3"
+              style={{ width: "46rem", border: "2px solid lightgrey" }}
+            >
+              <Card.Header className="comparison">Comparison Chart</Card.Header>
+              <Row>
+                <Col style={{ margin: "5px" }}>
+                  <h3 className="card-title">Area Stats</h3>
+                  <h4 className="areaStat"> Average Occupency Rate:</h4>
+                  <h5 className="abbStat">
+                    Occupency Rate: {propertyResults.avg_occupancy.toFixed(2)}%
+                  </h5>
+                  <h4 className="areaStat"> Average Nightly Rate:</h4>
+                  <h5 className="abbStat">
+                    Nightly Rate: {propertyResults.avg_nightly_price.toFixed(2)}
+                    $
+                  </h5>
+                  <h4 className="areaStat"> Average Monthly Earnings:</h4>
+                  <h5 className="abbStat">
+                    Monthly Earnings:{" "}
+                    {propertyResults.avg_airbnb_rental.toFixed(2)}$
+                  </h5>
+                </Col>
+                <Col>
+                  <h3 className="card-title">Property Stats</h3>
+                  <h4 className="areaStat">Break Even Occupency Rate:</h4>
+                  <h5 className="abbStat">Occupency Rate</h5>
+                  <h4 className="areaStat"> Break Even Nightly Rate:</h4>
+                  <h5 className="abbStat">Nightly Rate</h5>
+                  <h4 className="areaStat"> Potential Monthly Earnings:</h4>
+                  <h5 className="abbStat">Monthly Earnings</h5>
+                  <h4 className="areaStat"> ROI:</h4>
+                  <h5 className="abbStat">
+                    ROI%: {propertyResults.avg_airbnb_ROI.toFixed(2)}$
+                  </h5>
+                  <Button
+                    className="col-11/12"
+                    style={{ justifyContent: "center" }}
+                    variant="primary"
+                    type="submit"
+                    onClick={saveHome}
+                  >
+                    <FontAwesomeIcon className="icon" icon={faHeart} />
+                  </Button>
+                </Col>
+              </Row>
+              <Card.Body>
+                <Card.Link href="/myhomes">My Homes</Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
         )}
       </Row>
     </Container>
