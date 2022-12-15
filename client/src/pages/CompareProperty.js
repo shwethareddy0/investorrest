@@ -27,7 +27,7 @@ function CompareProperty() {
       // Mortgage evaluation
       // var investment = ((invest/12)+291);
       const interest = rate / 100 / 12;
-      const mortgage =
+      const mortgage = 
         (price - payment) *
         interest *
         (Math.pow(1 + interest, 360) / (Math.pow(1 + interest, 360) - 1));
@@ -75,7 +75,7 @@ function CompareProperty() {
     >
       <Row>
         <Col>
-          <Card style={{ border: "2px solid lightgrey" }}>
+          <Card style={{ border: "2px solid black" }}>
             <Card.Header className="ir-card-header">Search an Area</Card.Header>
             <Form
               style={{ jusitfyContent: "center", margin: "5px" }}
@@ -169,7 +169,7 @@ function CompareProperty() {
           <Col>
             <Card
               className="mb-3"
-              style={{ width: "60rem", border: "2px solid lightgrey" }}
+              style={{ width: "45rem", border: "2px solid black" }}
             >
               <Card.Header className="comparison ir-card-header">
                 <h4>Comparison Chart</h4>
@@ -212,7 +212,10 @@ function CompareProperty() {
                     {" "}
                     ROI: {((((((30.41*(propertyResults.avg_occupancy/100))*(propertyResults.avg_nightly_price)).toFixed(2))-mortgage)/mortgage)*100).toFixed(2)}%
                   </h4>
+                  </Col>
+                  <Col className="col-2">
                   <Button
+                  className="btn"
                     style={{ justifyContent: "center" }}
                     variant="primary"
                     type="submit"
