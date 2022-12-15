@@ -7,12 +7,19 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
+
+  
+  const [price, setPrice] = useState();
+  const [rate, setRate] = useState();
+  const [payment, setPayment] = useState();
   const [state, setState] = useState("CA");
   const [city, setCity] = useState("Berkeley");
   const [propertyResults, setPropertyResults] = useState();
 
   const fetchPropertyDetails = async () => {
+  
     const url = `/getResults?url=https://api.mashvisor.com/v1.1/client/trends/summary/${state}/${city}`;
+    
     try {
       const response = await axios.get(url);
       console.log(response);
@@ -21,6 +28,12 @@ function CompareProperty() {
       console.log(error);
     }
   };
+
+
+  var interest = ((rate/100)/12)
+  var mortgage = (price - payment) * interest * ( Math.pow(1+interest, 360) / ( Math.pow(1+interest, 360) - 1 ) )
+console.log(mortgage)
+console.log(interest)
 
   function saveHome() {
     axios.post(
@@ -40,9 +53,8 @@ function CompareProperty() {
       }
     );
   }
-  // var interest = (rate/100)/12
-  // var mortgage = ({price}-{payment})[interest(1+interest)^360]/[(1+interest)^360-1]
-  // console.log(mortgage)
+
+
   return (
     <Container
       fluid
@@ -92,8 +104,8 @@ function CompareProperty() {
                   <Form.Label>Property Price</Form.Label>
                   <Form.Control
                     type="Number"
-                    // value={price}
-                    // onChange={(e) => setPrice(e.target.value)}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="col-5" controlId="inputRate">
@@ -102,8 +114,8 @@ function CompareProperty() {
                     type="Number"
                     step="0.1"
                     format={"### %"}
-                    // value={rate}
-                    // onChange={(e) => setRate(e.target.value)}
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
                   />
                 </Form.Group>
               </Row>
@@ -111,8 +123,8 @@ function CompareProperty() {
                 <Form.Label>Down Payment</Form.Label>
                 <Form.Control
                   type="Number"
-                  // value={payment}
-                  // onChange={(e) => setPayment(e.target.value)}
+                  value={payment}
+                  onChange={(e) => setPayment(e.target.value)}
                 />
               </Form.Group>
               <Button
