@@ -49,7 +49,7 @@ function CompareProperty() {
         street_address: address,
         mortgage: mortgage,
         avg_occupancy: propertyResults.avg_occupancy,
-        airbnb_rental: propertyResults.avg_airbnb_rental,
+        avg_airbnb_rental: propertyResults.avg_airbnb_rental,
         avg_nightly_price: propertyResults.avg_nightly_price,
         avg_airbnb_ROI: propertyResults.avg_airbnb_ROI,
       },
@@ -81,7 +81,12 @@ function CompareProperty() {
             >
               <Form.Group className="mb-3" controlId="inputAddress">
                 <Form.Label>Street Address</Form.Label>
-                <Form.Control type="text" placeholder="Optional" />
+                <Form.Control
+                  type="text"
+                  placeholder="Optional"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
               </Form.Group>
               <Row>
                 <Form.Group className="col-6" controlId="cityInput">
@@ -149,38 +154,41 @@ function CompareProperty() {
           <Col>
             <Card
               className="mb-3"
-              style={{ width: "46rem", border: "2px solid lightgrey" }}
+              style={{ width: "60rem", border: "2px solid lightgrey" }}
             >
               <Card.Header className="comparison">Comparison Chart</Card.Header>
               <Row>
                 <Col style={{ margin: "5px" }}>
                   <h3 className="card-title">Area Stats</h3>
-                  <h4 className="areaStat"> Average Occupency Rate:</h4>
-                  <h5 className="abbStat">
-                    Occupency Rate: {propertyResults.avg_occupancy.toFixed(2)}%
-                  </h5>
-                  <h4 className="areaStat"> Average Nightly Rate:</h4>
-                  <h5 className="abbStat">
-                    Nightly Rate: {propertyResults.avg_nightly_price.toFixed(2)}
-                    $
-                  </h5>
-                  <h4 className="areaStat"> Average Monthly Earnings:</h4>
-                  <h5 className="abbStat">
-                    Monthly Earnings:{" "}
+                  <br />
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Occupency Rate:{" "}
+                    {propertyResults.avg_occupancy.toFixed(2)}%
+                  </h4>
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Nightly Rate:{" "}
+                    {propertyResults.avg_nightly_price.toFixed(2)}$
+                  </h4>
+                  <h4 className="areaStat">
+                    {" "}
+                    Average Monthly Earnings:
                     {propertyResults.avg_airbnb_rental.toFixed(2)}$
-                  </h5>
+                  </h4>
                 </Col>
                 <Col>
                   <h3 className="card-title">Property Stats</h3>
+                  <br />
                   <h4 className="areaStat">Break Even Occupency Rate:</h4>
                   <h5 className="abbStat">Occupency Rate</h5>
                   <h4 className="areaStat"> Break Even Nightly Rate:</h4>
                   <h5 className="abbStat">Nightly Rate</h5>
                   <h4 className="areaStat"> Potential Monthly Earnings:</h4>
                   <h5 className="abbStat">Monthly Earnings</h5>
-                  <h4 className="areaStat"> ROI:</h4>
-                  <h5 className="abbStat">
-                    ROI%: {propertyResults.avg_airbnb_ROI.toFixed(2)}$
+                  <h5 className="areaStat">
+                    {" "}
+                    ROI: {propertyResults.avg_airbnb_ROI.toFixed(2)}%
                   </h5>
                   <Button
                     className="col-11/12"
@@ -194,7 +202,9 @@ function CompareProperty() {
                 </Col>
               </Row>
               <Card.Body>
-                <Card.Link href="/myhomes">My Homes</Card.Link>
+                <Card.Link href="/myhomes">
+                  <h4>My Homes</h4>
+                </Card.Link>
               </Card.Body>
             </Card>
           </Col>

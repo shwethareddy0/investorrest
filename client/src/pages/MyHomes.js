@@ -12,7 +12,6 @@ function MyHomes() {
         Authorization: `Basic ${Auth.getToken()}`,
       },
     });
-    console.log(result);
     setSavedProperties(result.data);
   }
   const [savedProperties, setSavedProperties] = useState([]);
@@ -31,22 +30,33 @@ function MyHomes() {
   }, []);
 
   return (
-    <Col>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+      }}
+    >
       {savedProperties.map((property) => (
         <Card
           className="mb-3"
           style={{ width: "30rem", border: "2px solid lightgrey" }}
+          key={property._id}
         >
-          <Card.Header className="ir-card-header">My saved homes</Card.Header>
+          <Card.Header className="ir-card-header">
+            {property.street_address}
+          </Card.Header>
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Street Address: {property.city}</h5>
-              <h5 className="">Monthly Earnings: ${property.airbnb_rental}</h5>
-              <h5 className="">
-                {" "}
-                Average Nighlty Rate: ${property.avg_nightly_rate}
-              </h5>
-              <h5 className=""> ROI:</h5>
+              <p>City:{property.city}</p>
+              <p>State:{property.state}</p>
+              <p>Property Price:${property.price}</p>
+              <p>Interest Rate:{property.rate}%</p>
+              <p>Down Payment: ${property.payment}</p>
+              <p> Average Occupency Rate: {property.avg_occupancy}</p>
+              <p>Average Nightly Rate:${property.avg_nightly_price}</p>
+              <p>Average Monthly Earnings: ${property.avg_airbnb_rental}</p>
+              <p> ROI:{property.avg_airbnb_ROI}%</p>
               <FontAwesomeIcon
                 className="icon"
                 icon={faTrashCan}
@@ -56,7 +66,7 @@ function MyHomes() {
           </div>
         </Card>
       ))}
-    </Col>
+    </div>
   );
 }
 
