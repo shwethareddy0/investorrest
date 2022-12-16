@@ -7,6 +7,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import "../App.scss";
 
 function MyHomes() {
+  // api call to get the saved properties
   async function getSavedProperties() {
     const result = await axios.get("/api/homes/", {
       headers: {
@@ -17,6 +18,7 @@ function MyHomes() {
   }
   const [savedProperties, setSavedProperties] = useState([]);
 
+  // api call to delete the saved properties
   async function deleteProperty(propId) {
     const result = await axios.delete(`/api/homes/${propId}`, {
       headers: {
@@ -26,6 +28,7 @@ function MyHomes() {
     console.log(result);
     setSavedProperties(result.data);
   }
+  // Once component is mounted, get saved properties from the server
   useEffect(() => {
     getSavedProperties();
   }, []);
@@ -38,6 +41,7 @@ function MyHomes() {
         flexWrap: "wrap",
       }}
     >
+      {/* Using the map method, iterate over the list of saved properties and display them in their own cards*/}
       {savedProperties.map((property) => (
         <Card
           className="mb-3"
