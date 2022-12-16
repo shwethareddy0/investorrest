@@ -8,6 +8,7 @@ import axios from "axios";
 import Auth from "../utils/auth";
 
 function CompareProperty() {
+  //state variables to hold the user given inputs
   const [invest, setInvest] = useState();
   const [price, setPrice] = useState();
   const [address, setAddress] = useState();
@@ -168,7 +169,7 @@ function CompareProperty() {
             </Form>
           </Card>
         </Col>
-
+        {/* Once we get the response from the api, then only render the data in the cards*/}
         {propertyResults && (
           <Col>
             <Card

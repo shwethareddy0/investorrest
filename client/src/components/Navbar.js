@@ -4,6 +4,8 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import Auth from "../utils/auth";
 import "../App.scss";
 
+//If user is loggidIn , show the ccompareProperty and myHomes pages to the user
+//If user is not loggedIn, show only searchCity,login and signup pages
 function AppNavbar() {
   return (
     <>

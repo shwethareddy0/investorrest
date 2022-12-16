@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../App.scss";
 
-
-// Home page of the app
+// Homepage of the app
 function Homepage() {
   return (
     <Container fluid className="col-10 mx-auto homepage">
@@ -60,11 +59,22 @@ function Homepage() {
               Airbnb by the Numbers
             </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Total number of Airbnbs <h5>5,600,000 listings</h5></ListGroup.Item>
-              <ListGroup.Item>Profitability over long term rental <h5>STR's can make 3.5x more</h5></ListGroup.Item>
-              <ListGroup.Item>Year over year growth <h5>32.56%</h5></ListGroup.Item>
-              <ListGroup.Item>Average Occupancy<h5>58.9%</h5></ListGroup.Item>
-              <ListGroup.Item>Average Profits per Listing <h5> $13,800/year</h5></ListGroup.Item>
+              <ListGroup.Item>
+                Total number of Airbnbs <h5>5,600,000 listings</h5>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Profitability over long term rental{" "}
+                <h5>STR's can make 3.5x more</h5>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Year over year growth <h5>32.56%</h5>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Average Occupancy<h5>58.9%</h5>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Average Profits per Listing <h5> $13,800/year</h5>
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>

@@ -46,7 +46,6 @@ function SearchCity() {
         display: "flex",
         height: "90vh",
       }}
-  
     >
       <Row>
         <Col>
